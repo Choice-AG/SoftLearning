@@ -1,5 +1,5 @@
 <?php
-include 'Person.php';
+include_once 'Person.php';
 class Client extends Person {
     protected int $ClientId;
     

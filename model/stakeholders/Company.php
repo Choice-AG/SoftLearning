@@ -7,7 +7,7 @@ class Company {
     
     //Constructor
     public function __construct(string $commercialReg, string $type, int $employees) {
-        $this->commercialreg = $commercialreg;
+        $this->commercialReg = $commercialReg;
         $this->type = $type;
         $this->employees = $employees;
     }

@@ -1,7 +1,7 @@
 <?php
 
-include 'Provider.php';
-include 'Company.php';
+include_once 'Provider.php';
+include_once 'Company.php';
 
 class CompanyProvider extends Provider{
     protected Company $company;
