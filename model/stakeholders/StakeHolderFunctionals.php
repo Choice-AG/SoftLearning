@@ -10,8 +10,6 @@ include_once 'Provider.php';
 $cc = new CompanyClient("CEFP Nuria", "08-11547", "936622113", "nuria@escolesnuria.cat", "Apel·les Mestres 52", 
     "01-09-1933", 1000, "reg mercant", "SL", 45);
 
-print $cc->getName();
 $cc->SetType("SA");
-print " : ";
-print $cc->getType();
+print $cc->getName() . " : " . $cc->getType();
 print "<br>Fecha de creación: " . $cc->getBirthday();
