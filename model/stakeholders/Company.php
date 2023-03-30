@@ -21,7 +21,7 @@ class Company {
         return $this->type;
     }
 
-    public function getEmployes(): int {
+    public function getEmployees(): int {
         return $this->employees;
     }
 
@@ -34,7 +34,7 @@ class Company {
         $this->type = $type;
     }
 
-    public function setEmployes(int $employes): void {
-        $this->employees = $employes;
+    public function setEmployees(int $employees): void {
+        $this->employees = $employees;
     }
 }

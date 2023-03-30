@@ -4,7 +4,7 @@ class Employee extends Person{
     protected float $salary;//Salario
     protected string $position;//Posicion-cargo
     protected string $job;//Trabajo
-    protected DataTime $hireDate;//Fecha de antiguedad
+    protected DateTime $hireDate;//Fecha de antiguedad
     
     public function __construct(string $name, string $email, string $ident, string $phone, string $address, 
             string $birthDay, float $salary, string $position, string $job, string $hireDate) {
@@ -13,7 +13,7 @@ class Employee extends Person{
         $this->salary = $salary;
         $this->position = $position;
         $this->job = $job;
-        $this->hireDate = new DataTime($hireDate);
+        $this->hireDate = new DateTime($hireDate);
     }
     
     public function getSalary(): float {
@@ -45,6 +45,6 @@ class Employee extends Person{
     }
 
     public function setHireDate(string $hireDate): void {
-        $this->hireDate = new DataTime($hireDate);
+        $this->hireDate = new DateTime($hireDate);
     }
 }

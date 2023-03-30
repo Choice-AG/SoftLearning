@@ -15,7 +15,7 @@ class CompanyProvider extends Provider{
         $this->company = new Company($commercialReg, $type, $employees);
     }
     
-    public function getCompany(): string {
+    public function getCompany() {
         return $this->company;
     }
 

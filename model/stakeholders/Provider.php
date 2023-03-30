@@ -1,7 +1,7 @@
 <?php
 
 class Provider extends Person{
-    protected string $comercials; //Que tipo de proveedor es
+    protected string $commercials; //Que tipo de proveedor es
     protected int $delayDay; //Los dias de margen para pagar
     
     public function __construct(string $name, string $email, string $ident, string $phone, string $address, 
@@ -14,7 +14,7 @@ class Provider extends Person{
     }
     
     public function getCommercials(): string {
-        return $this->comercials;
+        return $this->commercials;
     }
 
     public function getDelayDay(): int {
