@@ -5,7 +5,7 @@ abstract class Product {
     protected string $description;
     protected string $price;
     protected int $amount;
-    protected string $fabricationDate;
+    protected DateTime $fabricationDate;
 
     //Construtor
     public function __construct(string $name, string $description, 
