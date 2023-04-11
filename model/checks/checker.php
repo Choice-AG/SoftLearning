@@ -24,6 +24,7 @@ class Checker {
         }
         return 0;
     }
+
     public static function ExplainStringErrorCode(int $error): string {
         switch ($error) {
             case -1: return "Se ha introducido un string nulo.";

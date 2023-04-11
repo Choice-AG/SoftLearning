@@ -30,12 +30,20 @@ class companyClient extends Client {
         $this->company->setType($type);
     }
 
-    public function setCommercialreg(string $commercialreg): void {
-        $this->company->setCommercialreg($commercialreg);
+    public function setCommercialreg(string $commercialreg): int {
+        $error = Checker::StringValidator($commercialreg, 5);
+        if ($error == 0) {
+            $this->commercialreg = $commercialreg;
+        }
+        return $error;
     }
 
-    public function setEmployees(string $employees): void {
-        $this->company->setEmployees($employees);
+    public function setEmployees(int $employees): int {
+        $error = Checker::NumberValidator($employees);
+        if ($error == 0) {
+            $this->employees = $employees;
+        }
+        return $error;
     }
 
 }

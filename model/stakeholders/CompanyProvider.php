@@ -33,8 +33,12 @@ class CompanyProvider extends Provider {
         $this->company->setCommercialreg($commercialreg);
     }
 
-    public function setEmployees(string $employees): void {
-        $this->company->setEmployees($employees);
+    public function setEmployees(int $employees): int {
+        $error = Checker::NumberValidator($employees);
+        if ($error == 0) {
+            $this->employees = $employees;
+        }
+        return $error;
     }
 
 }
