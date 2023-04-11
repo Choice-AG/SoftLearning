@@ -3,7 +3,7 @@
 include_once 'Person.php';
 include_once '../checks/checker.php';
 
-class provider extends Person {
+class Provider extends Person {
 
     protected string $commercials;
     protected int $delayDays;

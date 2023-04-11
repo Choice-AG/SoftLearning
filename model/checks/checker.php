@@ -24,5 +24,15 @@ class Checker {
         }
         return 0;
     }
+    public static function ExplainStringErrorCode(int $error): string {
+        switch ($error) {
+            case -1: return "Se ha introducido un string nulo.";
+                break;
+            case -2: return "Se ha introducido un string vacio.";
+                break;
+            case -3: return "Se ha introducido un string demasiado corto.";
+                break;
+        }
+    }
 
 }
