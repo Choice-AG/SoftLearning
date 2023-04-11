@@ -2,24 +2,39 @@
 
 include_once 'Provider.php';
 include_once 'Company.php';
+include_once '../checks/checker.php';
 
-class CompanyProvider extends Provider{
+class CompanyProvider extends Provider {
+
     protected Company $company;
-    
-    public function __construct(string $name, string $email, string $ident, string $phone, string $address, 
-            string $birthDay,string $commercials, int $delayDay, string $commercialReg, string $type, int $employees) {
-        
-        parent::__construct($name, $email, $ident, $phone, $address, $birthDay, $commercials, $delayDay, $commercialReg,
-                $type, $employees);
-        
-        $this->company = new Company($commercialReg, $type, $employees);
-    }
-    
-    public function getCompany() {
-        return $this->company;
+
+    public function __construct(string $name, string $ident, string $phone, string $email, string $address, string $birthday, string $commercials, int $delayDays, string $commercialreg, string $type, int $employees) {
+        parent::__construct($name, $ident, $phone, $email, $address, $birthday, $commercials, $delayDays);
+        $this->company = new Company($commercialreg, $type, $employees);
     }
 
-    public function setCompany(string $company): void {
-        $this->company = $company;
+    public function getType(): string {
+        return $this->company->getType();
     }
+
+    public function getCommercialreg(): string {
+        return $this->company->getCommercialreg();
+    }
+
+    public function getEmployees(): string {
+        return $this->company->getEmployees();
+    }
+
+    public function setType(string $type): void {
+        $this->company->setType($type);
+    }
+
+    public function setCommercialreg(string $commercialreg): void {
+        $this->company->setCommercialreg($commercialreg);
+    }
+
+    public function setEmployees(string $employees): void {
+        $this->company->setEmployees($employees);
+    }
+
 }

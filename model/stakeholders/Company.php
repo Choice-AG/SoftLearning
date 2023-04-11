@@ -1,20 +1,22 @@
 <?php
 
+include_once 'Person.php';
+include_once '../checks/checker.php';
+
 class Company {
-    protected string $commercialReg;//Registro comercial donde estas inscrito
-    protected string $type;//Que tipo de sociedad eres: SA...
+
+    protected string $commercialreg;
+    protected string $type;
     protected int $employees;
-    
-    //Constructor
-    public function __construct(string $commercialReg, string $type, int $employees) {
-        $this->commercialReg = $commercialReg;
+
+    public function __construct(string $commercialreg, string $type, int $employees) {
+        $this->commercialreg = $commercialreg;
         $this->type = $type;
         $this->employees = $employees;
     }
 
-    //Getters
-    public function getCommercialReg(): string {
-        return $this->commercialReg;
+    public function getCommercialreg(): string {
+        return $this->commercialreg;
     }
 
     public function getType(): string {
@@ -25,16 +27,28 @@ class Company {
         return $this->employees;
     }
 
-    //Setters
-    public function setCommercialReg(string $commercialReg): void {
-        $this->commercialReg = $commercialReg;
+    public function setCommercialreg(string $commercialreg): int {
+        $error = Checker::StringValidator($commercialreg, 10);
+        if ($error == 0) {
+            $this->commercialreg = $commercialreg;
+        }
+        return $error;
     }
 
-    public function setType(string $type): void {
-        $this->type = $type;
+    public function setType(string $type): int {
+        $error = Checker::StringValidator($type, 2);
+        if ($error == 0) {
+            $this->type = $type;
+        }
+        return $error;
     }
 
-    public function setEmployees(int $employees): void {
-        $this->employees = $employees;
+    public function setEmployees(int $employees): int {
+        $error = Checker::NumberValidator($employees);
+        if ($error == 0) {
+            $this->employees = $employees;
+        }
+        return $error;
     }
+
 }

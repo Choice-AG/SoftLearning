@@ -2,26 +2,40 @@
 
 include_once 'Client.php';
 include_once 'Company.php';
+include_once '../checks/checker.php';
 
-class CompanyClient extends Client {
+class companyClient extends Client {
+
     protected Company $company;
 
-    //hasta clientId es todo parte de herencia pero como tambien es una empresa hay que instanciar el new company
-    public function __construct(string $name, string $email, string $ident, string $phone, string $address, string $birthDay,
-            int $ClientId, string $commercialReg, string $type, int $employees) {
+    public function __construct(string $name, string $ident, string $phone, string $email, string $address, string $birthday, int $clientId, string $commercialreg, string $type, int $employees) {
+        parent::__construct($name, $ident, $phone, $email, $address, $birthday, $clientId);
+        $this->company = new Company($commercialreg, $type, $employees);
+        //Hasta $birthday es la herencia de client los de despues son por instancia de company
+    }
 
-        //Primero los de person y luego los de Company
-        parent::__construct($name, $email, $ident, $phone, $address, $birthDay, $ClientId);
-        
-        //Objeto de clase Company, por eso se le pasan estos 3 campos
-        $this->company = new Company($commercialReg, $type, $employees);
+    public function getType(): string {
+        return $this->company->getType();
+    }
+
+    public function getCommercialreg(): string {
+        return $this->company->getCommercialreg();
+    }
+
+    public function getEmployees(): string {
+        return $this->company->getEmployees();
     }
 
     public function setType(string $type): void {
         $this->company->setType($type);
     }
 
-    public function getType() {
-        return $this->company->getType();
+    public function setCommercialreg(string $commercialreg): void {
+        $this->company->setCommercialreg($commercialreg);
     }
+
+    public function setEmployees(string $employees): void {
+        $this->company->setEmployees($employees);
+    }
+
 }

@@ -1,31 +1,41 @@
 <?php
 
-class Provider extends Person{
-    protected string $commercials; //Que tipo de proveedor es
-    protected int $delayDay; //Los dias de margen para pagar
-    
-    public function __construct(string $name, string $email, string $ident, string $phone, string $address, 
-            string $birthDay,string $commercials, int $delayDay) {
-        
-        parent::__construct($name, $email, $ident, $phone, $address, $birthDay);
-        
+include_once 'Person.php';
+include_once '../checks/checker.php';
+
+class provider extends Person {
+
+    protected string $commercials;
+    protected int $delayDays;
+
+    public function __construct(string $name, string $ident, string $phone, string $email, string $address, string $birthday, string $commercials, int $delayDays) {
         $this->commercials = $commercials;
-        $this->delayDay = $delayDay;
+        $this->delayDays = $delayDays;
+        parent::__construct($name, $ident, $phone, $email, $address, $birthday);
     }
-    
+
     public function getCommercials(): string {
         return $this->commercials;
     }
 
-    public function getDelayDay(): int {
-        return $this->delayDay;
-    }
-    
-    public function setCommercials(string $commercials): void {
-        $this->commercials = $commercials;
+    public function getDelayDays(): int {
+        return $this->delayDays;
     }
 
-    public function setDelayDay(int $delayDay): void {
-        $this->delayDay = $delayDay;
+    public function setCommercials(string $commercials): int {
+        $error = Checker::StringValidator($commercials, 10);
+        if ($error == 0) {
+            $this->commercials = $commercials;
+        }
+        return $error;
     }
+
+    public function setDelayDays(int $delayDays): int {
+        $error = Checker::NumberValidator($delayDays);
+        if ($error == 0) {
+            $this->delayDays = $delayDays;
+        }
+        return $error;
+    }
+
 }

@@ -1,31 +1,53 @@
 <?php
 
-abstract class Person { //Abstracta porque cualquier Persona tiene esos campos
-    //Atributos
+include_once '../checks/checker.php';
+
+abstract class Person {
+
     protected string $name;
-    protected string $email;
     protected string $ident;
     protected string $phone;
+    protected string $email;
     protected string $address;
-    protected DateTime $birthDay;
-    
-    //Constructor
-    public function __construct(string $name, string $email, string $ident, string $phone, string $address, string $birthDay) {
-        $this->name = $name;
-        $this->email = $email;
-        $this->ident = $ident;
-        $this->phone = $phone;
-        $this->address = $address;
-        $this->birthDay = new DateTime($birthDay);
-    }
-    
-    //Getters
-    public function getName(): string {
-        return $this->name;
+    protected DateTime $birthday;
+
+    public function __construct(string $name, string $ident, string $phone, string $email, string $address, string $birthday) {
+        $message = "";
+        $error = $this->setName($name);
+        if ($error != 0) {
+            $message .= "Bad Name;";
+        }
+        $error = $this->setIdent($ident);
+        if ($error != 0) {
+            $message .= "Bad Ident;";
+        }
+        $error = $this->setPhone($phone);
+        if ($error != 0) {
+            $message .= "Bad Phone;";
+        }
+        $error = $this->setEmail($email);
+        if ($error != 0) {
+            $message .= "Bad Email;";
+        }
+        $error = $this->setAddress($address);
+        if ($error != 0) {
+            $message .= "Bad Address;";
+        }
+        $error = $this->setBirthday($birthday);
+        if ($error != 0) {
+            $message .= "Bad Date;";
+        }
+        if ($error == 0) {
+            try {
+                $this->birthday = new DateTime($birthday);
+            } catch (Exception $ex) {
+                throw new Exception($message);
+            }
+        }
     }
 
-    public function getEmail(): string {
-        return $this->email;
+    public function getName(): string {
+        return $this->name;
     }
 
     public function getIdent(): string {
@@ -36,36 +58,68 @@ abstract class Person { //Abstracta porque cualquier Persona tiene esos campos
         return $this->phone;
     }
 
+    public function getEmail(): string {
+        return $this->email;
+    }
+
     public function getAddress(): string {
         return $this->address;
     }
 
-    public function getBirthDay(): string {
-        return $this->birthDay->format("d-m-y");
-    }
-    
-    //Setters
-    public function setName(string $name): void {
-        $this->name = $name;
+    public function getBirthday(): string {
+        return $this->birthday->format("d-m-y");
     }
 
-    public function setEmail(string $email): void {
-        $this->email = $email;
+    public function setName(string $name): int {
+        $error = Checker::StringValidator($name, 3);
+        if ($error == 0) {
+            $this->name = $name;
+        }
+        return $error;
     }
 
-    public function setIdent(string $ident): void {
-        $this->ident = $ident;
+    public function setIdent(string $ident): int {
+        $error = Checker::StringValidator($ident, 2);
+        if ($error == 0) {
+            $this->ident = $ident;
+        }
+        return $error;
     }
 
-    public function setPhone(string $phone): void {
-        $this->phone = $phone;
+    public function setPhone(string $phone): int {
+        $error = Checker::StringValidator($phone, 9);
+        if ($error == 0) {
+            $this->phone = $phone;
+        }
+        return $error;
     }
 
-    public function setAddress(string $address): void {
-        $this->address = $address;
+    public function setEmail(string $email): int {
+        $error = Checker::StringValidator($email, 5);
+        if ($error == 0) {
+            $this->email = $email;
+        }
+        return $error;
     }
 
-    public function setBirthDay(string $birthDay): void {
-        $this->birthDay = new DateTime($birthDay);
-    } 
+    public function setAddress(string $address): int {
+        $error = Checker::StringValidator($address, 6);
+        if ($error == 0) {
+            $this->address = $address;
+        }
+        return $error;
+    }
+
+    public function setBirthday(string $birthday): int {
+        $error = Checker::StringValidator($birthday, 10);
+        if ($error == 0) {
+            try {
+                $this->birthday = new DateTime($birthday);
+            } catch (Exception $ex) {
+                throw new Exception("Error al instrucir la fecha");
+            }
+        }
+        return $error;
+    }
+
 }
