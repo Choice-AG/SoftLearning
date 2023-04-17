@@ -116,7 +116,7 @@ abstract class Person {
             try {
                 $this->birthday = new DateTime($birthday);
             } catch (Exception $ex) {
-                throw new Exception("Error al instrucir la fecha");
+                throw new Exception("Error al introducir la fecha");
             }
         }
         return $error;

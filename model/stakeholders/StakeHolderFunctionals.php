@@ -50,3 +50,22 @@ try {
 } catch (Exception $ex) {
     print $ex->getMessage();
 }
+
+try{
+    //$prov = new Provider("283764675", "Provider1sss", "Dir1", "836467777", "email1@gmail.com", "02-02-1999", "hdgfgf", "04-04-2023");
+    $employee2 = new Employee("53319646B", "ny", "Dcion1", "726354633", "email1@gmail.com", "02-01-2000", 2000, "senior", "backend", "05-05-2020");
+    //echo "Empleado prueba2:". $employee2->getName();
+    //$comp = new Company("75554", "hucshhsvcfv", -1);
+} catch (BuildException $ex) {
+    echo $ex->getMessage();
+}
+
+function getDataSH(Stakeholder $sh):string {
+    return "Name:" . $sh->getName() . ";Id:" . $sh->getIdent() . ":Contact:" . $sh->getContactData();
+}
+
+$client2 = new Client("Goizane", "002", "999999999", "goizane@gmail.com", "Avenida de guipuzcoa", "02-06-2000", "202");
+
+print getDataSH($client2);
+//print "<br><br>";
+//print getDataSH($p);
