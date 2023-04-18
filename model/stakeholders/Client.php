@@ -10,8 +10,9 @@ class Client extends Person implements Stakeholder{
     protected int $clientId;
 
     public function __construct(string $name, string $ident, string $phone, string $email, string $address, string $birthday, int $clientId) {
-        $this->clientId = $clientId;
+        
         parent::__construct($name, $ident, $phone, $email, $address, $birthday);
+
         $message = "";
         $error = $this->setClientId($clientId);
         if ($error != 0) {

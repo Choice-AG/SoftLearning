@@ -31,19 +31,11 @@ class companyClient extends Client {
     }
 
     public function setCommercialreg(string $commercialreg): int {
-        $error = Checker::StringValidator($commercialreg, 5);
-        if ($error == 0) {
-            $this->commercialreg = $commercialreg;
-        }
-        return $error;
+        return $this->company->setCommercialreg($commercialreg);
     }
 
     public function setEmployees(int $employees): int {
-        $error = Checker::NumberValidator($employees);
-        if ($error == 0) {
-            $this->employees = $employees;
-        }
-        return $error;
+        return $this->company->setEmployees($employees);
     }
 
 }

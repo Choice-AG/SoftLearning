@@ -10,6 +10,7 @@ class Company {
     protected int $employees;
 
     public function __construct(string $commercialreg, string $type, int $employees) {
+        
         $message = "";
         $error = $this->setCommercialreg($commercialreg);
         if($error != 0){

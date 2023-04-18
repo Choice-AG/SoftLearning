@@ -64,8 +64,18 @@ function getDataSH(Stakeholder $sh):string {
     return "Name:" . $sh->getName() . ";Id:" . $sh->getIdent() . ":Contact:" . $sh->getContactData();
 }
 
-$client2 = new Client("Goizane", "002", "999999999", "goizane@gmail.com", "Avenida de guipuzcoa", "02-06-2000", "202");
-$companyProvider2 = new CompanyProvider("Alejandro", "008", "999999999", "a.lejandro@gmail.com", "Avenida de cadaqués 33", "09-06-1976", "Tizas", 2, "Registro mercantil", "SA", 200);
+try{
+    $client2 = new Client("Goizane", "002", "999999999", "goizane@gmail.com", "Avenida de guipuzcoa", "02-06-2000", "202");
+} catch (BuildException $ex) {
+    echo $ex->getMessage();
+}
+
+try{
+    $companyProvider2 = new CompanyProvider("Alejandro", "008", "999999999", "a.lejandro@gmail.com", "Avenida de cadaqués 33", "09-06-1976", "5657565756567", 2, "Registro mercantil", "SA", 200);
+    echo "Commercials: " . $companyProvider2->getCommercials() . "<br>";
+} catch (BuildException $ex) {
+    echo $ex->getMessage();
+}
 
 print getDataSH($client2);
 print "<br>";
