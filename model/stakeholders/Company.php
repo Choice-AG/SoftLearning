@@ -10,9 +10,22 @@ class Company {
     protected int $employees;
 
     public function __construct(string $commercialreg, string $type, int $employees) {
-        $this->commercialreg = $commercialreg;
-        $this->type = $type;
-        $this->employees = $employees;
+        $message = "";
+        $error = $this->setCommercialreg($commercialreg);
+        if($error != 0){
+            $message .= "Bad commercial reg;";
+        }
+        $error = $this->setType($type);
+        if($error != 0){
+            $message .= "Bad type;";
+        }
+        $error = $this->setEmployees($employees);
+        if($error != 0){
+            $message .= "Bad employees;";
+        }
+        if(strlen($message) > 0){
+            throw new BuildException($message);
+        }
     }
 
     public function getCommercialreg(): string {

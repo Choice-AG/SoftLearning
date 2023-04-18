@@ -4,7 +4,7 @@ include_once 'Provider.php';
 include_once 'Company.php';
 include_once '../checks/checker.php';
 
-class CompanyProvider extends Provider {
+class CompanyProvider extends Provider implements Stakeholder {
 
     protected Company $company;
 
@@ -39,6 +39,10 @@ class CompanyProvider extends Provider {
             $this->employees = $employees;
         }
         return $error;
+    }
+    
+    public function getContactData(): string {
+        return $this->getEmail() . ";" . $this->getPhone() . ";" . $this->getAddress();
     }
 
 }

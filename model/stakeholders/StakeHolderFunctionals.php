@@ -31,7 +31,7 @@ print "<br><br>Company<br>Commercial Register: " . $company->getCommercialReg() 
         $company->getType() . "<br>Employees: " . $company->getEmployees();
 
 //CompanyProvider
-$cprovider = new CompanyProvider("ClienteProveedor", "cproveedor@gmail.com", "001", "934 888 888", "Algun lado", "17-07-1998", 
+$cprovider = new CompanyProvider("ClienteProveedor", "cproveedor@gmail.com", "001", "934888888", "Algun lado", "17-07-1998", 
         "Tizas", 1, "reg mercantil", "SL", 100);
 print "<br><br>CompanyProvider<br>ID:" . $cprovider->getIdent();
 
@@ -65,7 +65,8 @@ function getDataSH(Stakeholder $sh):string {
 }
 
 $client2 = new Client("Goizane", "002", "999999999", "goizane@gmail.com", "Avenida de guipuzcoa", "02-06-2000", "202");
+$companyProvider2 = new CompanyProvider("Alejandro", "008", "999999999", "a.lejandro@gmail.com", "Avenida de cadaqués 33", "09-06-1976", "Tizas", 2, "Registro mercantil", "SA", 200);
 
 print getDataSH($client2);
-//print "<br><br>";
-//print getDataSH($p);
+print "<br>";
+print getDataSH($companyProvider2);
