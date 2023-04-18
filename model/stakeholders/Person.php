@@ -3,7 +3,6 @@
 include_once '../checks/checker.php';
 
 abstract class Person {
-
     protected string $name;
     protected string $ident;
     protected string $phone;
@@ -33,16 +32,16 @@ abstract class Person {
         if ($error != 0) {
             $message .= "Bad Address;";
         }
-        $error = $this->setBirthday($birthday);
-        if ($error != 0) {
-            $message .= "Bad Date;";
-        }
-        if ($error == 0) {
-            try {
-                $this->birthday = new DateTime($birthday);
-            } catch (Exception $ex) {
-                throw new Exception($message);
+        try{
+            $error = $this->setBirthday($birthday);
+            if($error != 0){
+                $message .= "Bad Date;";
             }
+        } catch (BuildException $ex) {
+            $message .= $ex->getMessage();
+        }
+        if(strlen($message) > 0){
+            throw new BuildException($message);
         }
     }
 

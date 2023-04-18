@@ -2,23 +2,45 @@
 
 abstract class Product {
 
+    protected string $id;
     protected string $name;
     protected string $description;
     protected string $price;
-    protected int $amount;
-    protected DateTime $fabricationDate;
+    protected string $author;
 
-    //Construtor
-    public function __construct(string $name, string $description,
-            string $price, int $amount, string $fabricationDate) {
-        $this->name = $name;
-        $this->description = $description;
-        $this->price = $price;
-        $this->amount = $amount;
-        $this->fabricationDate = new DateTime($fabricationDate);
-    }
+    //Construtor (Protegido) -> id, name, description, price, author
+    public function __construct(string $id, string $name, string $description, string $price, string $author) {
+            $message = "";
+            $error = $this->setId($id);
+            if ($error != 0) {
+                $message .= "Bad Id;";
+            }
+            $error = $this->setName($name);
+            if ($error != 0) {
+                $message .= "Bad Name;";
+            }
+            $error = $this->setDescription($description);
+            if ($error != 0) {
+                $message .= "Bad Description;";
+            }
+            $error = $this->setPrice($price);
+            if ($error != 0) {
+                $message .= "Bad Price;";
+            }
+            $error = $this->setAuthor($author);
+            if ($error != 0) {
+                $message .= "Bad Author;";
+            }
+            if(strlen($message) > 0){
+                throw new BuildException($message);
+            }
+        }
+    
 
     //Getters
+    public function getId(): string {
+        return $this->id;
+    }
     public function getName(): string {
         return $this->name;
     }
@@ -31,33 +53,49 @@ abstract class Product {
         return $this->price;
     }
 
-    public function getAmount(): int {
-        return $this->amount;
+    public function getAuthor(): string {
+        return $this->author;
     }
 
-    public function getFabricationDate(): string {
-        return $this->fabricationDate->format("d-m-y");
+    //Setters (Protegidos)
+
+    public function setId(string $id): int {
+        $error = Checker::StringValidator($id, 2);
+        if ($error == 0) {
+            $this->id = $id;
+        }
+        return $error;
+    }
+    public function setName(string $name): int {
+        $error = Checker::StringValidator($name, 2);
+        if ($error == 0) {
+            $this->name = $name;
+        }
+        return $error;
     }
 
-    //Setters
-    public function setName(string $name): void {
-        $this->name = $name;
+    public function setDescription(string $description): int {
+        $error = Checker::StringValidator($description, 5);
+        if ($error == 0) {
+            $this->description = $description;
+        }
+        return $error;
     }
 
-    public function setDescription(string $description): void {
-        $this->description = $description;
+    public function setPrice(string $price): int {
+        $error = Checker::StringValidator($price, 1);
+        if ($error == 0) {
+            $this->price = $price;
+        }
+        return $error;
     }
 
-    public function setPrice(string $price): void {
-        $this->price = $price;
-    }
-
-    public function setAmount(int $amount): void {
-        $this->amount = $amount;
-    }
-
-    public function setFabricationDate(string $fabricationDate): void {
-        $this->fabricationDate = new DateTime($fabricationDate);
+    public function setAuthor(string $author): int {
+        $error = Checker::StringValidator($author, 2);
+        if ($error == 0) {
+            $this->author = $author;
+        }
+        return $error;
     }
 
 }

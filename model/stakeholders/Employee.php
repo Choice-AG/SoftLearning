@@ -11,31 +11,41 @@ class Employee extends Person {
     protected DateTime $hireDate;
 
     public function __construct(string $name, string $ident, string $phone, string $email, string $address, string $birthday, float $salary, string $position, string $job, string $hireDate) {
+        parent::__construct($name, $ident, $phone, $email, $address, $birthday);
+
         $message = "";
         $error = $this->setSalary($salary);
         if ($error != 0) {
             $message .= "Bad Salary;";
         }
+
         $error = $this->setPosition($position);;
         if ($error != 0) {
             $message .= "Bad Position;";
         }
+
         $error = $this->setJob($job);
         if ($error != 0) {
             $message .= "Bad Job;";
         }
+
         $error = $this->setHireDate($hireDate);
         if ($error != 0) {
             $message .= "Bad Salary;";
         }
-        if ($error == 0) {
-            try {
-                $this->hireDate = new DateTime($hireDate);
-            } catch (Exception $ex) {
-                throw new Exception($message);
+
+        try{
+            $error = $this->setHireDate($hireDate);
+            if($error != 0){
+                $message .= "Bad Date;";
             }
+        } catch (BuildException $ex) {
+            $message .= $ex->getMessage();
         }
-        parent::__construct($name, $ident, $phone, $email, $address, $birthday);
+        
+        if(strlen($message) > 0){
+            throw new BuildException($message);
+        }
     }
 
     public function getSalary(): float {

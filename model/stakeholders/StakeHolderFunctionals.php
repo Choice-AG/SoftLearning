@@ -21,9 +21,9 @@ print "<br><br>CompanyClient<br>" . $cc->getName() . " " . $cc->getType();
 print "<br>Fecha de creación: " . $cc->getBirthday();
 
 //Client
-$client = new Client("Cliente", "cliente@gmail.com", "001", "678978978", "La empresa de al lado Nº5", "02-03-1978", 1);
+$client = new Client("Cliente", "005", "87889789789", "mail@cliente.com", "Calle de la albondiga", "12-02-1983", 2);
 print "<br><br>Client<br>ID:" . $client->getClientId() . "<br>Nombre: " . $client->getName() . 
-        "<br>Fecha de nacimiento: " . $client->getBirthday();
+    "<br>Fecha de nacimiento: " . $client->getBirthday();
 
 //Company
 $company = new Company("Reg. mercantil", "SL", 100);
@@ -31,8 +31,8 @@ print "<br><br>Company<br>Commercial Register: " . $company->getCommercialReg() 
         $company->getType() . "<br>Employees: " . $company->getEmployees();
 
 //CompanyProvider
-$cprovider = new CompanyProvider("ClienteProveedor", "cproveedor@gmail.com", "001", "934888888", "Algun lado", "17-07-1998", 
-        "Tizas", 1, "reg mercantil", "SL", 100);
+$cprovider = new CompanyProvider("Alfonso", "006", "999999999", "alfon.so@proveedor.com", "Avenida de la alfombrilla 5",
+    "09-12-1993", "9083940248092", 1, "Comercio Mercantil", "SA", 150);
 print "<br><br>CompanyProvider<br>ID:" . $cprovider->getIdent();
 
 
@@ -72,7 +72,13 @@ try{
 
 try{
     $companyProvider2 = new CompanyProvider("Alejandro", "008", "999999999", "a.lejandro@gmail.com", "Avenida de cadaqués 33", "09-06-1976", "5657565756567", 2, "Registro mercantil", "SA", 200);
-    echo "Commercials: " . $companyProvider2->getCommercials() . "<br>";
+    echo "Commercials CompanyProvider: " . $companyProvider2->getCommercials() . "<br>";
+} catch (BuildException $ex) {
+    echo $ex->getMessage();
+}
+
+try{
+    $provider2 = new Provider("Daniel", "007", "888777666", "daniel.a@provider.com", "Villanueva de la calva", "22-02-1998", "8877998879", 2);
 } catch (BuildException $ex) {
     echo $ex->getMessage();
 }
@@ -80,3 +86,5 @@ try{
 print getDataSH($client2);
 print "<br>";
 print getDataSH($companyProvider2);
+print "<br>";
+print getDataSH($provider2);

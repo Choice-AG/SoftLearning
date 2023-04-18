@@ -3,7 +3,7 @@
 include_once 'Person.php';
 include_once '../checks/checker.php';
 
-class Provider extends Person {
+class Provider extends Person implements Stakeholder{
 
     protected string $commercials;
     protected int $delayDays;
@@ -50,4 +50,7 @@ class Provider extends Person {
         return $error;
     }
 
+    public function getContactData(): string {
+        return $this->getEmail() . ";" . $this->getPhone() . ";" . $this->getAddress() . ";" . $this->getCommercials();
+    }
 }
