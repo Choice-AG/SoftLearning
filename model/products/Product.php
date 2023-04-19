@@ -9,6 +9,7 @@ abstract class Product {
     protected string $price;
     protected string $author;
 
+    
     //Construtor (Protegido) -> id, name, description, price, author
     public function __construct(string $id, string $name, string $description, string $price, string $author) {
             $message = "";
