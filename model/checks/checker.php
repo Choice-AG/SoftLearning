@@ -25,6 +25,13 @@ class Checker {
         return 0;
     }
 
+    public static function BooleanValidator(bool $bool): int {
+        if (is_bool($bool) != 1){
+            return -1;
+        }
+        return 0;
+    }
+
     public static function ExplainStringErrorCode(int $error): string {
         switch ($error) {
             case -1: 
@@ -32,7 +39,8 @@ class Checker {
             case -2: 
                 return "Se ha introducido un string vacio.";
             case -3: 
-                return "Se ha introducido un string demasiado corto.";
+                return "Se ha introducido un string demasiado corto.";    
         }
+        return "";
     }
 }

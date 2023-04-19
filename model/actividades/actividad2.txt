@@ -1,0 +1,27 @@
+---------------------------------------------------------- ACTIVIDAD 2 ----------------------------------------------------------
+
+  - Crear en el package modelo el package products para ubicar las diferentes clases que representen a los bienes comerciales 
+    con los que trabajaremos en nuestro proyecto. 
+    ✓✓
+
+  - Partiendo de una clase abstracta Product, que representa a los atributos comunes de los productos con los que trabajaremos 
+    (libros de programación, software específico y cursos de programación, en los que cada caso tiene sus particularidades).
+    ✓✓
+
+  - Emplear el mecanismo de Herencia para aprovechar el código desarrollado en las correspondientes clases derivadas. Implementar 
+    en cada clase los atributos, constructores y métodos set y get respectivos.
+    ✓✓
+
+  - Crear en Product un método abstracto getDetails. Aplicar a todas las clases derivadas la sobreescritura de métodos para 
+    reescribir ese método adaptado a sus particularidades.
+    ??
+
+  - Hacer uso de las interfaces Storable o Marketable. La clase Product implementará Marketable, que contará con los servicios 
+    necesarios para comprar/vender un producto (habrá que sobreescribirlo a cada derivada). La clase Book implementará Storable 
+    y sus servicios para facilitar el almacenamiento.
+
+  - Realizar las pruebas funcionales de las diferentes clases, creándolas y utilizando sus métodos get/set. Probar las interfaces 
+    Storable y Marketable con un par de funciones, cada una recibirá un objeto de una clase que implemente estas interfaces y 
+    mostrarán por pantalla el resultado de ejecutar todos los métodos definidos en cada interfaz.
+
+---------------------------------------------------------------------------------------------------------------------------------

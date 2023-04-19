@@ -85,6 +85,6 @@ try{
 
 print "Cliente2: <br>" . getDataSH($client2);
 print "<br>";
-print "CompanyProvider2: <br>" . getDataSH($companyProvider2);
+print "<br>CompanyProvider2: <br>" . getDataSH($companyProvider2);
 print "<br>";
-print "Provider2: <br>" . getDataSH($provider2);
+print "<br>Provider2: <br>" . getDataSH($provider2);

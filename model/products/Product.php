@@ -2,16 +2,14 @@
 include_once '../checks/checker.php';
 
 abstract class Product {
-
     protected string $id;
     protected string $name;
     protected string $description;
-    protected string $price;
+    protected float $price;
     protected string $author;
-
     
     //Construtor (Protegido) -> id, name, description, price, author
-    public function __construct(string $id, string $name, string $description, string $price, string $author) {
+    public function __construct(string $id, string $name, string $description, float $price, string $author) {
             $message = "";
             $error = $this->setId($id);
             if ($error != 0) {
@@ -51,7 +49,7 @@ abstract class Product {
         return $this->description;
     }
 
-    public function getPrice(): string {
+    public function getPrice(): float {
         return $this->price;
     }
 
@@ -84,8 +82,8 @@ abstract class Product {
         return $error;
     }
 
-    public function setPrice(string $price): int {
-        $error = Checker::StringValidator($price, 1);
+    public function setPrice(float $price): int {
+        $error = Checker::NumberValidator($price);
         if ($error == 0) {
             $this->price = $price;
         }
@@ -100,4 +98,5 @@ abstract class Product {
         return $error;
     }
     
+    //public abstract function getDetails(): string;
 }
