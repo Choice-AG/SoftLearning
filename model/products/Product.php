@@ -1,4 +1,5 @@
 <?php
+include_once '../checks/checker.php';
 
 abstract class Product {
 
@@ -97,5 +98,5 @@ abstract class Product {
         }
         return $error;
     }
-
+    
 }

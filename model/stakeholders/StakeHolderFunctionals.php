@@ -57,7 +57,7 @@ try{
     //echo "Empleado prueba2:". $employee2->getName();
     //$comp = new Company("75554", "hucshhsvcfv", -1);
 } catch (BuildException $ex) {
-    echo $ex->getMessage();
+    echo "Mensaje de error de employee2: <br>" . $ex->getMessage() . "<br><br>";
 }
 
 function getDataSH(Stakeholder $sh):string {
@@ -72,7 +72,7 @@ try{
 
 try{
     $companyProvider2 = new CompanyProvider("Alejandro", "008", "999999999", "a.lejandro@gmail.com", "Avenida de cadaqués 33", "09-06-1976", "5657565756567", 2, "Registro mercantil", "SA", 200);
-    echo "Commercials CompanyProvider: " . $companyProvider2->getCommercials() . "<br>";
+    echo "Commercials CompanyProvider: <br>" . $companyProvider2->getCommercials() . "<br><br>";
 } catch (BuildException $ex) {
     echo $ex->getMessage();
 }
@@ -83,8 +83,8 @@ try{
     echo $ex->getMessage();
 }
 
-print getDataSH($client2);
+print "Cliente2: <br>" . getDataSH($client2);
 print "<br>";
-print getDataSH($companyProvider2);
+print "CompanyProvider2: <br>" . getDataSH($companyProvider2);
 print "<br>";
-print getDataSH($provider2);
+print "Provider2: <br>" . getDataSH($provider2);

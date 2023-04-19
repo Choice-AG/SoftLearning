@@ -1,5 +1,4 @@
 <?php
-
 include_once '../checks/checker.php';
 
 abstract class Person {
