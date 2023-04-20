@@ -155,8 +155,7 @@ class Cursos extends Product{
   }
 
   public function getDetails(): string{
-    return "Duration: " . $this->getDuration() . " Category: " . $this->getCategory() . " End Date: " . $this->getEndDate() . 
-    " Start Date: " . $this->getStartDate() . " Schedule: " . $this->getSchedule() . " Is Remote: " . $this->getIsRemote() . 
-    " Language: " . $this->getLanguage();
+    return $this->getDuration() . ";" . $this->getCategory() . ";" . $this->getEndDate() . ";" . $this->getStartDate() . ";" . $this->getSchedule() . 
+    ";" . $this->getIsRemote() . ";" . $this->getLanguage();
   }
 }

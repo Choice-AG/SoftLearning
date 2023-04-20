@@ -1,8 +1,9 @@
 <?php
 
 include_once 'Product.php';
+include_once 'interface/Storable.php';
 
-class Libro extends Product {
+class Libro extends Product implements Storable{
   protected string $isbn;
   protected string $editorial;
   protected int $pages;
@@ -163,8 +164,7 @@ class Libro extends Product {
   }
 
   public function getDetails(): string{
-    return "ISBN: " . $this->getIsbn() . " Editorial: " . $this->getEditorial() . " Pages: " . $this->getPages() . 
-    " Language: " . $this->getLanguage() . " Format: " . $this->getFormat() . " Weight: " . $this->getWeight() . 
-    " Dimensions: " . $this->getDimensions() . " PublicationDate: " . $this->getPublicationDate() . " Genre: " . $this->getGenre();
+    return $this->getIsbn() . ";" . $this->getEditorial() . ";" . $this->getPages() . ";" . $this->getLanguage() . ";" . $this->getFormat() . 
+    ";" . $this->getWeight() . ";" . $this->getDimensions() . ";" . $this->getPublicationDate() . ";" . $this->getGenre();
   }
 }

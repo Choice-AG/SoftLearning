@@ -1,7 +1,8 @@
 <?php
 include_once '../checks/checker.php';
+include_once 'interface/Marketable.php';
 
-abstract class Product {
+abstract class Product implements Marketable{
     protected string $id;
     protected string $name;
     protected string $description;

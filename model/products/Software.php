@@ -68,6 +68,6 @@ class Software extends Product {
   }
 
   public function getDetails(): string {
-    return "Type: " . $this->getType() . " Version: " . $this->getVersion() . " Os: " . $this->getOs();
+    return $this->getType() . ";" . $this->getVersion() . ";" . $this->getOs();
   }
 }
