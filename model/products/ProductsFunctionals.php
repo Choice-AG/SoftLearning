@@ -130,5 +130,5 @@ function getDataMarketable(Marketable $marketable): string
         . ";Details" . $marketable->getDetails();
 }
 
-print "<br><br>Software: <br>" . getDataMarketable($software);
-print "<br><br>Libro: <br>" . getDataStorable($libro);
+print "<br><br>Software:<br>" . getDataMarketable($software);
+print "<br><br>Libro:<br>" . getDataStorable($libro);
