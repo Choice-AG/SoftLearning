@@ -19,9 +19,10 @@
   - Hacer uso de las interfaces Storable o Marketable. La clase Product implementará Marketable, que contará con los servicios 
     necesarios para comprar/vender un producto (habrá que sobreescribirlo a cada derivada). La clase Book implementará Storable 
     y sus servicios para facilitar el almacenamiento.
+    ✓
 
   - Realizar las pruebas funcionales de las diferentes clases, creándolas y utilizando sus métodos get/set. Probar las interfaces 
     Storable y Marketable con un par de funciones, cada una recibirá un objeto de una clase que implemente estas interfaces y 
     mostrarán por pantalla el resultado de ejecutar todos los métodos definidos en cada interfaz.
-
+    ✓✓
 ---------------------------------------------------------------------------------------------------------------------------------
