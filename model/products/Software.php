@@ -7,7 +7,7 @@ class Software extends Product {
   protected string $version;
   protected string $os;
 
-  //Constructor
+  //Constructor -> Id, Name, Description, Price, Author, Type, Version, Os
   public function __construct(string $id, string $name, string $description, string $price, string $author, string $type, string $version, string $os) {
     parent::__construct($id, $name, $description, $price, $author);
 
