@@ -61,7 +61,7 @@ try{
 }
 
 function getDataSH(Stakeholder $sh):string {
-    return "Name:" . $sh->getName() . ";Id:" . $sh->getIdent() . ":Contact:" . $sh->getContactData();
+    return "Name:" . $sh->getName() . ";Id:" . $sh->getIdent() . ";Contact:" . $sh->getContactData();
 }
 
 try{
