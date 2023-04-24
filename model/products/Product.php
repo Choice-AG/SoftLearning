@@ -2,7 +2,7 @@
 include_once '../checks/checker.php';
 include_once 'interface/Marketable.php';
 
-abstract class Product implements Marketable{
+abstract class Product implements Marketable {
     protected string $id;
     protected string $name;
     protected string $description;
@@ -32,7 +32,7 @@ abstract class Product implements Marketable{
             if ($error != 0) {
                 $message .= "Bad Author;";
             }
-            if(strlen($message) > 0){
+            if(strlen($message) > 0) {
                 throw new BuildException($message);
             }
         }
