@@ -126,7 +126,7 @@ function getDataStorable(Storable $storable): string
 //Crear funcion para recibir datos de Marketable
 function getDataMarketable(Marketable $marketable): string
 {
-  return "Name:" . $marketable->getName() . ";Id:" . $marketable->getId() . ";Price:" . $marketable->getPrice() . ";Price:" . $marketable->getAuthor() 
+  return "Name:" . $marketable->getName() . ";Id:" . $marketable->getId() . ";Price:" . $marketable->getPrice() . ";Author:" . $marketable->getAuthor() 
         . ";Details" . $marketable->getDetails();
 }
 

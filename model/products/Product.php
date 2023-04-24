@@ -99,5 +99,7 @@ abstract class Product implements Marketable{
         return $error;
     }
     
-    //public abstract function getDetails(): string;
+    public function getDetails(): string {
+        return $this->price . "€;" . $this->id . ";" . $this->name;
+    }
 }
