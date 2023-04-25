@@ -163,8 +163,8 @@ class Libro extends Product implements Storable{
     return $error;
   }
 
-  public function getDetails(): string{
-    return $this->getIsbn() . ";" . $this->getEditorial() . ";" . $this->getPages() . ";" . $this->getLanguage() . ";" . $this->getFormat() . 
+  public function getDetails(): string {
+    return $this->price . "€;" . $this->id . ";" . $this->name . ";" . $this->getIsbn() . ";" . $this->getEditorial() . ";" . $this->getPages() . ";" . $this->getLanguage() . ";" . $this->getFormat() . 
     ";" . $this->getWeight() . ";" . $this->getDimensions() . ";" . $this->getPublicationDate() . ";" . $this->getGenre();
   }
 }
