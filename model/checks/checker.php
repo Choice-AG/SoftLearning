@@ -16,18 +16,11 @@ class Checker {
     }
 
     public static function NumberValidator(int $n): int {
-        if ($n == 0) {
+        if ($n === 0) {
             return -1;
         }
         if ($n < 0) {
             return -2;
-        }
-        return 0;
-    }
-
-    public static function BooleanValidator(bool $bool): int {
-        if (is_bool($bool) != 1){
-            return -1;
         }
         return 0;
     }
