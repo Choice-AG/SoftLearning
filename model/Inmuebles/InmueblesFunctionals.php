@@ -22,7 +22,7 @@ echo "<br><br>Almacen con numPiso cambiado: <br>" . $almacen->getId() . ";" . $a
 
 //Comprobar que no se puede crear un almacen con una direccion y date incorrecto
 try {
-  $almacen2 = new Almacen("001", "", 2671 , 755.60, "", 70.5, 2); 
+  $almacen2 = new Almacen("001", "", 2671 , 755.60, "", 70.5, 2);
 } catch (BuildException $ex) {
   echo "<br><br>Mensaje de error de almacen2: <br>" . $ex->getMessage() . "<br><br>";
 }
@@ -49,7 +49,6 @@ try {
 } catch (BuildException $ex) {
   echo "<br><br>Mensaje de error de localComercial2: <br>" . $ex->getMessage();
 }
-
 
 
 
