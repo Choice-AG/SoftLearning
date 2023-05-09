@@ -1,67 +1,137 @@
 <?php
 
-include_once '../products/Libros.php';
+include_once 'Product.php';
+include_once 'Libro.php';
+include_once 'Curso.php';
+include_once 'Software.php';
+include_once '../../exceptions/BuildException.php';
+include_once 'interface/Marketable.php';
+include_once 'interface/Storable.php';
 include_once '../checks/checker.php';
 
+//Crear Libro
+$libro = new Libro(
+  "109",
+  "El cuento de peter pan",
+  "Peter pan va sobre un niño que nunca crecia y luego le pasan cosas.",
+  15.2,
+  "Joaquin Pereira",
+  "978-84-376-0494-7",
+  "Anaya",
+  200,
+  "Español",
+  "Tapa dura",
+  500,
+  "20x15x2",
+  "09-12-2000",
+  "09-12-2000",
+  "Fantasia"
+);
+
+//Comprobar que se ha creado correctamente
+echo $libro->getAuthor() . ";" . $libro->getIsbn() . ";" . $libro->getEditorial() . ";" . $libro->getPages() . ";" . $libro->getLanguage() . ";" .
+  $libro->getFormat() . ";" . $libro->getWeight() . "g;" . $libro->getDimensions() . ";" . $libro->getPublicationDate() . ";" . $libro->getGenre();
+
+//Comprobar que no se puede crear un libro con un isbn y dimensiones incorrecto
 try {
-    $libro = new Libro("109", "El cuento de peter pan", "Peter pan va sobre un niño que nunca crecia y luego le pasan cosas.", 
-    "15.2", "Joaquin Pereira", "978-84-376-0494-7", "Anaya", 200, "Español", "Tapa dura", 500, "20x15x2", "09-12-2000" , "16-01-2001", "Fantasia");
-    $error = $libro->setName("Como programar PHP");
-    if ($error == 0) {
-        print "<br><br>El libro tiene los siguiente detalles  "  . $libro->getDetails() . "<br><br>".$libro->getPeriod()."<br><br>";
-        
-        $l = $libro->getInterval(12);
-        foreach($l as $date){
-            print "<br>Tiempo transcurido en intervalos es de ". $date. "<br>";
-        }
-        
-    } else {
-        print ErrorExplain::StringErrorCode($error);
-    }
-} catch (Exception $ex) {
-    print $ex->getMessage();
+  $libro2 = new Libro(
+    "109",
+    "El cuento de peter pan",
+    "Peter pan va sobre un niño que nunca crecia y luego le pasan cosas.",
+    15.2,
+    "Joaquin Pereira",
+    "978-84",
+    "Anaya",
+    200,
+    "Español",
+    "Tapa dura",
+    500,
+    "20x",
+    "09-12-2000",
+    "29-12-2000",
+    "Fantasia"
+  );
+} catch (BuildException $ex) {
+  echo "<br>Mensaje de error de libro2: " . $ex->getMessage() . "<br><br>";
 }
 
+//------------------------------------------------------------------
 
-/* try {
-    $sotfwer=new Software("microsoft SL ", "Anti virus2023", "12.34", "1209831321", "6 meses", "Anti virus", "microsoft 11");
+//Crear Curso
+$curso = new Curso(
+  "109",
+  "El cuento de peter pan",
+  "Peter pan va sobre un niño que nunca crecia y luego le pasan cosas.",
+  15.2,
+  "Joaquin Pereira",
+  200,
+  "Fantasia",
+  "09-12-2000",
+  "09-12-2000",
+  "Mañana",
+  "Remoto",
+  "Español"
+);
 
-    $error = $sotfwer->setTipoSotfwer("Microsoft 10");
-    if ($error == 0) {
-        print "<br><br>El Sowtfer tien los siguiente detalles  " . $sotfwer->getDetails() . "<br><br>";
-    } else {
-        print ErrorExplain::StringErrorCode($error);
-    }
-} catch (Exception $ex) {
-    print $ex->getMessage();
-}
+//Comprobar que se ha creado correctamente
+echo $curso->getAuthor() . ";" . $curso->getDuration() . ";" . $curso->getCategory() . ";" . $curso->getEndDate() . ";" . $curso->getStartDate() . ";" .
+  $curso->getSchedule() . ";" . $curso->getIsRemote() . ";" . $curso->getLanguage();
 
 
+//Comprobar que no se puede crear un curso con una fecha de inicio y fin incorrecta
 try {
-    $Curso=new Curso("Ayoub Addam", "EL mundo bereber", "34.94", "569432934523", "12 meses", "Educativo Batx", 230, "22-09-2023", "03-06-2023");
-    $error = $Curso->setAutor("Ayoub Adam");
-    if ($error == 0) {
-        print "<br><br>El Curso tien los siguiente detalles" . $Curso->getDetails() . "<br><br>";
-    } else {
-        print ErrorExplain::StringErrorCode($error);
-    }
-} catch (Exception $ex) {
-    print $ex->getMessage();
+  $curso2 = new Curso(
+    "109",
+    "El cuento de peter pan",
+    "Peter pan va sobre un niño que nunca crecia y luego le pasan cosas.",
+    15.2,
+    "Joaquin Pereira",
+    200,
+    "Fantasia",
+    "",
+    "",
+    "Mañana",
+    "Remoto",
+    "Español"
+  );
+} catch (BuildException $ex) {
+  echo "<br>Mensaje de error de curso2: " . $ex->getMessage() . "<br><br>";
 }
 
+//------------------------------------------------------------------
 
+//Crear Software
+$software = new Software("003", "AVG", "Antivirus de Windows", 19.99, "AVG", "Antivirus", "v1.5.7", "Windows");
 
-function getStorable(Storable $stake): string {
-    return "<br><br>Las dimensiones son  ".$stake->getDimensiones()." El ident/ ISBN es " .$stake->getIsbn() . " El tipo de envase es =" . $stake->getIsFragil();
+//Comprobar que se ha creado correctamente
+echo $software->getAuthor() . ";" . $software->getType() . ";" . $software->getVersion() . ";" . $software->getOs();
+
+//Comprobar que no se puede crear un software con un tipo y version incorrecto
+try {
+  $software2 = new Software("003", "AVG", "Antivirus de Windows", 19.99, "AVG", "", "v1.5.7", "Windows");
+} catch (BuildException $ex) {
+  echo "<br>Mensaje de error de software2: " . $ex->getMessage() . "";
 }
 
-print getStorable($Libro);
+//Metodos de getDetails
+echo "<br><br>Detalles del libro: " . $libro->getDetails();
+echo "<br><br>Detalles del curso: " . $curso->getDetails();
+echo "<br><br>Detalles del software: " . $software->getDetails();
 
+//------------------------------------------------------------------
 
-function getMarketable(Marketable $stake): string {
-    return "<br><br>".$stake->getTipo()." El Nombre es  " .$stake->getNombre() . " El ID  es =" . $stake->getId();
+//Crear funcion para recibir datos de Storable
+function getDataStorable(Storable $storable): string
+{
+  return "Name:" . $storable->getName() . ";Id:" . $storable->getId() . ";Price:" . $storable->getPrice() . ";Details:" . $storable->getDetails();
 }
 
-print getMarketable($Curso);
+//Crear funcion para recibir datos de Marketable
+function getDataMarketable(Marketable $marketable): string
+{
+  return "Name:" . $marketable->getName() . ";Id:" . $marketable->getId() . ";Price:" . $marketable->getPrice() . ";Author:" . $marketable->getAuthor() 
+        . ";Details" . $marketable->getDetails();
+}
 
-print getMarketable($sotfwer); */
+print "<br><br>Software:<br>" . getDataMarketable($software);
+print "<br><br>Libro:<br>" . getDataStorable($libro);

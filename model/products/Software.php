@@ -7,7 +7,6 @@ class Software extends Product {
   protected string $version;
   protected string $os;
 
-  //Constructor -> Id, Name, Description, Price, Author, Type, Version, Os
   public function __construct(string $id, string $name, string $description, string $price, string $author, string $type, string $version, string $os) {
     parent::__construct($id, $name, $description, $price, $author);
 
@@ -43,7 +42,7 @@ class Software extends Product {
   }
 
   //Setters (Protegidos)
-  protected function setType(string $type): int {
+  public function setType(string $type): int {
     $error = Checker::StringValidator($type, 5);
     if ($error == 0) {
       $this->type = $type;
@@ -51,15 +50,15 @@ class Software extends Product {
     return $error;
   }
 
-  protected function setVersion(string $version): int {
-    $error = Checker::StringValidator($version, 5);
+  public function setVersion(string $version): int {
+    $error = Checker::StringValidator($version, 2);
     if ($error == 0) {
       $this->version = $version;
     }
     return $error;
   }
 
-  protected function setOs(string $os): int {
+  public function setOs(string $os): int {
     $error = Checker::StringValidator($os, 5);
     if ($error == 0) {
       $this->os = $os;

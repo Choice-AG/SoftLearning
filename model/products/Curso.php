@@ -2,7 +2,7 @@
 
 include_once 'Product.php';
 
-class Cursos extends Product{
+class Curso extends Product{
 
   protected int $duration;
   protected string $category;
@@ -70,11 +70,11 @@ class Cursos extends Product{
   }
 
   public function getEndDate(): string{
-    return $this->endDate->format("d-m-y");
+    return $this->endDate->format("d-m-Y");
   }
 
   public function getStartDate(): string{
-    return $this->startDate->format("d-m-y");
+    return $this->startDate->format("d-m-Y");
   }
 
   public function getSchedule(): string{
