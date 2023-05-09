@@ -15,7 +15,7 @@ try {
         print "TIEMPO INTERVALO:<br>";
         $l = $libro->getInterval(17);
         foreach($l as $date){
-            print "Tiempo transcurido en intervalos es de ". $date. "<br>";
+            print "Tiempo transcurrido en intervalos: ". $date. "<br>";
         }
         
     } else {
@@ -25,7 +25,7 @@ try {
     print $ex->getMessage();
 }
 
-echo "<br><br>";
+echo "<br>";
 
 try {
     $software = new Software("003", "AVG Antivirus 10", "Antivirus de Windows", 19.99, "AVG", "Antivirus", "v1.5.7", "Windows");
