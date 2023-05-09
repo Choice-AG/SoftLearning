@@ -1,11 +1,8 @@
 <?php
 
 include_once 'Person.php';
-include_once '../checks/checker.php';
-include_once '../../exceptions/BuildException.php';
 include_once 'Stakeholder.php';
-
-class Client extends Person implements Stakeholder{
+class Client extends Person implements Stakeholder, JsonSerializable{
 
     protected int $clientId;
 
@@ -38,4 +35,15 @@ class Client extends Person implements Stakeholder{
         return $this->getEmail() . ";" . $this->getPhone();
     }
 
+    public function jsonSerialize() {
+        return [
+            'name' => $this->getName(),
+            'ident' => $this->getIdent(),
+            'phone' => $this->getPhone(),
+            'email' => $this->getEmail(),
+            'address' => $this->getAddress(),
+            'birthday' => $this->getBirthday(),
+            'clientId' => $this->getClientId()
+        ];
+    }
 }

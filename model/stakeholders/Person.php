@@ -1,5 +1,5 @@
 <?php
-include_once '../checks/checker.php';
+
 
 abstract class Person {
     protected string $name;
@@ -65,7 +65,7 @@ abstract class Person {
     }
 
     public function getBirthday(): string {
-        return $this->birthday->format("d-m-y");
+        return $this->birthday->format("d-m-Y");
     }
 
     public function setName(string $name): int {

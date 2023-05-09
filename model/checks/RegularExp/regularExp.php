@@ -1,5 +1,18 @@
 <?php
 
+if (preg_match("/php/i", "PHP es el lenguaje de secuencias de comandos web preferido.")) {
+  echo "Se encontró una coincidencia.";
+} else {
+  echo "No se encontró ninguna coincidencia.";
+}
+
+if (preg_match("/^\d{4,6}.[A-Z]$/", "1234.Z")) {
+  echo "<br><br>Se encontró una coincidencia.";
+} else {
+  echo "<br><br>No se encontró ninguna coincidencia.";
+}
+echo "<br><br>";
+
 $operation = "25+15=40";
 $array = [];
 if (preg_match("/^(\d+)([+\-*\/])(\d+)=(\d+)$/", $operation, $array)) {
@@ -46,18 +59,21 @@ if (preg_match("/^(\d+)([+\-*\/])(\d+)=(\d+)$/", $operation, $array)) {
 
 echo "<br><br>";
 
-$email = "aaaa@aaaaa.com";
-if (preg_match("/^([a-zA-Z0-9_]+)(@)([a-z]+)(\.)([a-z]+)$/", $email)) {
-  echo "email correcto";
-} else {
-  echo "email incorrecto";
+function checkEmail(string $email): int {
+  $array = [];
+  if (preg_match("/^([a-zA-Z_0-9\.]{8,25})(@)([a-z]{3,})\.([a-z]{3})$/", $email, $array)) {
+    return 0;
+  } else {
+    throw new Exception("<br><br>Fallo al introducir el email");
+  }
 }
 
-echo "<br><br>";
-
-$dni = "11111111A";
-if (preg_match("/^(\d{8})([a-zA-Z])$/", $dni)) {
-  echo 0;
-} else {
-  echo -1;
+try {
+  $email = "goizane.olaneta02@gmail.com";
+  $checkEmail = checkEmail($email);
+  if ($checkEmail == 0) {
+    print("<br>Email correcto");
+  }
+} catch (Exception $ex) {
+  echo $ex->getMessage();
 }

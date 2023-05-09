@@ -1,9 +1,9 @@
 <?php
 
 include_once 'Product.php';
-include_once 'interface/Storable.php';
+include_once 'Interface/Storable.php';
 
-class Libro extends Product implements Storable{
+class Libro extends Product implements Storable, JsonSerializable{
   protected string $isbn;
   protected string $editorial;
   protected int $pages;
@@ -12,11 +12,12 @@ class Libro extends Product implements Storable{
   protected int $weight;
   protected string $dimensions;
   protected DateTime $publicationDate;
+  protected DateTime $availableDate;
   protected string $genre;
 
   //Constructor
   public function __construct(string $id, string $name, string $description, string $price, string $author, string $isbn, string $editorial, 
-    int $pages, string $language, string $format, int $weight, string $dimension, string $publicationDate, string $genre) {
+    int $pages, string $language, string $format, int $weight, string $dimension, string $publicationDate, string $availableDate, string $genre) {
     parent::__construct($id, $name, $description, $price, $author);
 
     $message = "";
@@ -49,11 +50,13 @@ class Libro extends Product implements Storable{
       $message .= "Bad Dimensions;";
     }
     try {
-      $error = $this->setPublicationDate($publicationDate);
-      if ($error != 0){
-        $message .= "Bad Publication Date;";
-      }
-    } catch (BuildException $ex) {
+      $this->setPublicationDate($publicationDate);
+    } catch (DateException $ex) {
+        $message .= $ex->getMessage();
+    }
+    try {
+      $this->setAvailableDate($availableDate);
+    } catch (DateException $ex) {
         $message .= $ex->getMessage();
     }
     $error = $this->setGenre($genre);
@@ -88,7 +91,10 @@ class Libro extends Product implements Storable{
     return $this->dimensions;
   }
   public function getPublicationDate(): string {
-    return $this->publicationDate->format("d-m-y");
+    return $this->publicationDate->format("d-m-Y");
+  }
+  public function getAvailableDate(): string {
+    return $this->availableDate->format("d-m-Y");
   }
   public function getGenre(): string {
     return $this->genre;
@@ -144,16 +150,11 @@ class Libro extends Product implements Storable{
     }
     return $error;
   }
-  public function setPublicationDate($publicationDate): int {
-    $error = Checker::StringValidator($publicationDate, 10);
-    if ($error == 0) {
-      try {
-        $this->publicationDate = new DateTime($publicationDate);
-      } catch (Exception $ex) {
-          throw new Exception("Error al introducir la fecha");
-      }
-    }
-    return $error;
+  public function setPublicationDate($publicationDate) {
+    $this->publicationDate = Checker::checkDate($publicationDate);
+  }
+  public function setAvailableDate($availableDate) {
+    $this->availableDate = Checker::checkDate($availableDate);
   }
   public function setGenre($genre): int {
     $error = Checker::StringValidator($genre, 4);
@@ -166,5 +167,44 @@ class Libro extends Product implements Storable{
   public function getDetails(): string {
     return $this->price . "€;" . $this->id . ";" . $this->name . ";" . $this->getIsbn() . ";" . $this->getEditorial() . ";" . $this->getPages() . ";" . $this->getLanguage() . ";" . $this->getFormat() . 
     ";" . $this->getWeight() . ";" . $this->getDimensions() . ";" . $this->getPublicationDate() . ";" . $this->getGenre();
+  }
+
+  public function getPeriod(): string {
+    $availableDate = $this->availableDate;
+    $publicationDate = $this->publicationDate;
+    $datesDiff = $publicationDate->diff($availableDate);
+    return "Tiempo transcurrido desde que se publico hasta que estuvo disponble: $datesDiff->y años, $datesDiff->m meses y $datesDiff->d días, en total pasaron $datesDiff->days días.";
+  }
+
+  public function getInterval(int $days): array {
+    $interval = new DateInterval('P' . $days . 'D');
+    $inicio = $this->publicationDate;
+    $fecha = new DateTime();
+    $dateRange = new DatePeriod($inicio, $interval, $fecha);
+    $arrayDates = [];
+    foreach($dateRange as $date) {
+      $arrayDates[] = $date->format('d-m-Y');
+    }
+    return $arrayDates;
+  }
+
+  public function jsonSerialize() {
+    return [
+      'id' => $this->getId(),
+      'name' => $this->getName(),
+      'description' => $this->getDescription(),
+      'price' => $this->getPrice(),
+      'author' => $this->getAuthor(),
+      'isbn' => $this->getIsbn(),
+      'editorial' => $this->getEditorial(),
+      'pages' => $this->getPages(),
+      'language' => $this->getLanguage(),
+      'format' => $this->getFormat(),
+      'weight' => $this->getWeight(),
+      'dimensions' => $this->getDimensions(),
+      'publicationDate' => $this->getPublicationDate(),
+      'availableDate' => $this->getAvailableDate(),
+      'genre' => $this->getGenre()
+    ];
   }
 }
