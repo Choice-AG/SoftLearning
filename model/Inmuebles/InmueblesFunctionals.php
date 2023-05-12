@@ -51,7 +51,6 @@ try {
 }
 
 
-
 /* ------------------------------------PROBAR LA INTERFACE------------------------------------ */
 function getDataAlquilable(Alquilable $alquilable): string
 {

@@ -54,21 +54,15 @@ try {
     print $ex->getMessage();
 }
 
-
-
 function getStorable(Storable $stake): string {
     return "DIMENSIONES: " . $stake->getDimensions()." ISBN: " .$stake->getIsbn() . " PRECIO: " . $stake->getPrice();
 }
-
 print getStorable($libro);
-
 echo "<br><br>";
 
 function getMarketable(Marketable $stake): string {
     return "AUTHOR: ".$stake->getAuthor()." NAME: " .$stake->getName() . " ID:" . $stake->getId();
 }
 print getMarketable($Curso);
-
 echo "<br><br>";
-
 print getMarketable($software);
