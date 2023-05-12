@@ -1,5 +1,4 @@
 <?php
-include_once '../../exceptions/BuildException.php';
 
 abstract class Person {
     protected string $name;

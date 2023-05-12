@@ -19,7 +19,7 @@ class JsonBookSerializer {
 }
 
 /*
-'name' => $this->getNombre(),
+  'name' => $this->getNombre(),
   'autor' => $this->getAutor(),
   'isbn' => $this->getIsbn(),
   'ident' => $this->getId(),

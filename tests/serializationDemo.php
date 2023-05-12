@@ -8,15 +8,18 @@ include_once '../model/products/Libro.php';
 include_once '../exceptions/DateException.php';
 include_once '../exceptions/BuildException.php';
 include_once '../model/appservices/book/JsonBookSerializer.php';
+include_once '../model/appservices/clients/XmlClientSerializer.php';
 
 try {
   $client = new Client("Alvaro Salas", "012", "656656656", "a.salas@gmail.com", "calle mayor", "02-02-2000", 23);
 
   $clientSerialized = JsonClientSerializer::serialize($client);
+  print "CLIENT SERIALIZED JSON:<br>";
   var_dump($clientSerialized);
   print "<br><br>";
   
   $clientUnserialized = JsonClientSerializer::unserialize($clientSerialized);
+  print "CLIENT UNSERIALIZED JSON:<br>";
   var_dump($clientUnserialized);
   print "<br><br>";
 
@@ -29,32 +32,31 @@ try {
     "15.2", "Joaquin Pereira", "978-84-376-0494-7", "Anaya", 200, "Español", "Tapa dura", 500, "20x15x2", "09-12-2000" , "16-01-2001", "Fantasia");
 
   $bookSerialized = JsonBookSerializer::serialize($book);
+  print "BOOK SERIALIZED JSON:<br>";
   var_dump($bookSerialized);
   print "<br><br>";
   
   $bookUnserialized = JsonBookSerializer::unserialize($bookSerialized);
+  print "BOOK UNSERIALIZED JSON:<br>";
   var_dump($bookUnserialized);
   print "<br><br>";
   
 } catch (Exception $ex) {
   print $ex->getMessage() . "<br><br>";
 }
-
-/*
+print "<br><br>";
 try {
-    $e1 = new Client("ayoub adam", "ayoub@gmail", "12345678", "667036982", "calle mayor", "22-03-2003", 23);
-    $e2 = new Client("ayoub adam", "ayoub@gmail", "12345678", "667036982", "calle mayor", "22-03-2003", 23);
-    $e3 = new Client("ayoub adam", "ayoub@gmail", "12345678", "667036982", "calle mayor", "22-03-2003", 23);
+  $c = new Client("Alvaro Salas", "012", "656656656", "a.salas@gmail.com", "calle mayor", "02-02-2000", 23);  
+  $clientXmlSerializer = new XMLClientSerializer(); 
+  $stringXML = $clientXmlSerializer->serialize($c);
+  
+  print("CLIENT SELIALIZED XML (se ve en la consola):<br>");
+  var_dump ($stringXML);
+  print "<br><br>";
+  print("CLIENT UNSERIALIZED XML:<br>");
+  var_dump ($clientXmlSerializer->unserialize($stringXML));
 
-    $e = array($e1, $e2, $e3);
-    var_dump($e);
-    $jsonC = json_encode($e);   //al implementar JsonSerialize retornen el array adient
-    print "<br><br><br>";
-    var_dump($jsonC);
+} catch (Exception $ex){
+  print $ex->getMessage() . "<br><br>";
+}
 
-    $clientObj = json_decode($jsonC);  //amb json_decode obtenim un objecte de stdClass 
-    print "<br><br><br>";
-    var_dump($clientObj); 
-} catch (Exception $ex) {
-    print $ex->getMessage();
-}*/
