@@ -3,10 +3,10 @@
 declare(strict_types=1);
 include_once '../model/stakeholders/Client.php';
 include_once '../model/checks/checker.php';
-include_once '../model/appservices/clients/JsonClientSerializer.php';
 include_once '../model/products/Libro.php';
 include_once '../exceptions/DateException.php';
 include_once '../exceptions/BuildException.php';
+include_once '../model/appservices/clients/JsonClientSerializer.php';
 include_once '../model/appservices/book/JsonBookSerializer.php';
 include_once '../model/appservices/clients/XmlClientSerializer.php';
 include_once '../model/appservices/book/XmlBookSerializer.php';

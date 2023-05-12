@@ -128,8 +128,7 @@ class Checker
         }
     }
 
-    public static function checkDate(string $data)
-    {
+    public static function checkDate(string $data) {
         if (Checker::StringValidator($data, 10) == 0) {
             try {
                 return new DateTime($data);

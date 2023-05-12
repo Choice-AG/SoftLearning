@@ -4,12 +4,13 @@ class ErrorExplain {
   public static function StringErrorCode(int $error): string {
     switch ($error) {
       case -1: 
-        return "<br><br><br>se ha intorucido un string nulo<br><br><br>";
+        return "El string es nulo<br><br>";
       case -2: 
-        return "<br><br><br>se ha intorucido un string vacio<br><br><br>";
+        return "El string está vacio<br><br>";
       case -3: 
-        return "<br><br><br>se ha intorucido un string demasiado corto<br><br><br>";
-      default: return "";
+        return "El string introducido es demasiado corto<br><br>";
+      default: 
+        return "";
     }
   }
 }
