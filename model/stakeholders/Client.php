@@ -47,3 +47,16 @@ class Client extends Person implements Stakeholder, JsonSerializable{
         ];
     }
 }
+
+/* 
+CREATE TABLE clients (
+    client_id SERIAL NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    ident VARCHAR(10) UNIQUE NOT NULL,
+    phone VARCHAR(10) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    address VARCHAR(50) NOT NULL,
+    birthday DATE NOT NULL,
+    PRIMARY KEY(client_id)
+)
+*/

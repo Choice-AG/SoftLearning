@@ -67,6 +67,10 @@ abstract class Person {
         return $this->birthday->format("d-m-Y");
     }
 
+    public function getBirthdayMysql(): string {
+        return $this->birthday->format("Y-m-d");
+    }
+
     public function setName(string $name): int {
         $error = Checker::StringValidator($name, 3);
         if ($error == 0) {

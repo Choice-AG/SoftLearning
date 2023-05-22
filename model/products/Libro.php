@@ -208,3 +208,24 @@ class Libro extends Product implements Storable, JsonSerializable{
     ];
   }
 }
+
+/* 
+CREATE TABLE books (
+	id SERIAL NOT NULL,
+  name VARCHAR(50) NOT NULL,
+  description VARCHAR(100) NOT NULL,
+  price INT NOT NULL,
+  author VARCHAR(50) NOT NULL,    
+  isbn VARCHAR(50) UNIQUE NOT NULL,
+  editorial VARCHAR(20) NOT NULL,
+  pages INT NOT NULL,
+  language VARCHAR(20) NOT NULL,
+  format VARCHAR(20) NOT NULL,
+  weight INT NOT NULL,
+  dimensions VARCHAR(20) NOT NULL,
+  publication_date DATE NOT NULL,
+  available_date DATE NOT NULL,
+  genre VARCHAR(50) NOT NULL,
+  PRIMARY KEY(id)
+) 
+*/
