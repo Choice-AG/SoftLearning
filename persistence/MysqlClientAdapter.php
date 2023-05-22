@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-/* include '../persistence/MysqlAdapter.php'; */
-
 class MysqlClientAdapter extends MysqlAdapter {
   public function getClient(int $id): Client {
     $data = $this->readQuery("SELECT name,ident,phone,email,address,birthday,client_id FROM clients WHERE client_id =" . $id . ";");
@@ -36,12 +34,12 @@ class MysqlClientAdapter extends MysqlAdapter {
 
   public function updateClient(Client $client): bool {
     try {
-        return $this->writeQuery("UPDATE clients SET name = \"" . $client->getName() . "\"," .
-                        "ident = \"" . $client->getIdent() . "\"," .
-                        "phone = \"" . $client->getPhone() . "\"," .
-                        "email = \"" . $client->getEmail() . "\"," .
-                        "address \"= " . $client->getEmail() . "\"," .
-                        "birthday \"= " . $client->getBirthdayMysql() . "\"," .
+        return $this->writeQuery("UPDATE clients SET name = '" . $client->getName() . "'," .
+                        "ident = '" . $client->getIdent() . "'," .
+                        "phone = '" . $client->getPhone() . "'," .
+                        "email = '" . $client->getEmail() . "'," .
+                        "address '= " . $client->getEmail() . "'," .
+                        "birthday '= " . $client->getBirthdayMysql() . "'," .
                         " WHERE id = " . $client->getClientId() . ";");
     } catch (mysqli_sql_exception $ex) {
         throw new ServiceException("Error al actualizar el cliente -->" . $ex->getMessage());

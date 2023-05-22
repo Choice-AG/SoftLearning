@@ -1,6 +1,7 @@
 <?php
 
 include_once 'interface/Marketable.php';
+include '../../exceptions/BuildException.php';
 
 abstract class Product implements Marketable {
     protected string $id;
@@ -61,7 +62,7 @@ abstract class Product implements Marketable {
     //Setters (Protegidos)
 
     public function setId(string $id): int {
-        $error = Checker::StringValidator($id, 2);
+        $error = Checker::StringValidator($id, 1);
         if ($error == 0) {
             $this->id = $id;
         }

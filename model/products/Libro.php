@@ -93,8 +93,14 @@ class Libro extends Product implements Storable, JsonSerializable{
   public function getPublicationDate(): string {
     return $this->publicationDate->format("d-m-Y");
   }
+  public function getPublicationDateMysql(): string {
+    return $this->publicationDate->format("Y-m-d");
+  }
   public function getAvailableDate(): string {
     return $this->availableDate->format("d-m-Y");
+  }
+  public function getAvailableDateMysql(): string {
+    return $this->availableDate->format("Y-d-m");
   }
   public function getGenre(): string {
     return $this->genre;

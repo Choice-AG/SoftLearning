@@ -6,7 +6,6 @@ include '../../model/stakeholders/Client.php';
 include '../../persistence/MysqlAdapter.php';
 include '../../persistence/MysqlClientAdapter.php';
 
-
 $client = new Client("Alvaro", "12345678A", "666666666", "a.salas@gmail.com", "La calle de al lado n5", "1998-07-17", 1);
 $db = new MysqlClientAdapter();
 
@@ -24,11 +23,11 @@ if ($db->isConnected()) {
 
     try {
         if ($db->addClient($client)) {
-            print "CLIENTE AÑADIDO<br><br>";
+            print "CLIENTE" . $client->getClientId() . " AÑADIDO<br><br>";
             $c = $db->getClient(1);
             var_dump($c);
         } else {
-            print "CLIENTE NO AÑADIDO<br><br>";
+            print "CLIENTE" . $client->getClientId() ." NO AÑADIDO<br><br>";
         }
     } catch (ServiceException $ex) {
         print "NO SE HA AÑADIDO AL CLIENTE <br><br>";

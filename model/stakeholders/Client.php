@@ -2,6 +2,7 @@
 
 include_once 'Person.php';
 include_once 'Stakeholder.php';
+
 class Client extends Person implements Stakeholder, JsonSerializable{
 
     protected int $clientId;
