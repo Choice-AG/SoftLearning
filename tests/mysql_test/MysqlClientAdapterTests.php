@@ -34,12 +34,15 @@ if ($db->isConnected()) {
         print $ex->getMessage();
     }
 
+    print "<br><br>";
+    $client->setName("aaaaaaaa");
+    print($client->getName());
+    print "<br><br>";
+
     try {
-        $client->setName("Ethan");
-        $db->updateClient($client);
-        print "CLIENTE ACTUALIZADO<br><br>";
-        $c = $db->getClient(1);
-        var_dump($c);
+        $client->setPhone("444777444");
+        $c = $db->updateClient($client);
+        var_dump($db->getClient(1));
     } catch (ServiceException $ex) {
         print "NO HEMOS ACTUALIZADO AL CLIENTE<br><br>";
         print $ex->getMessage();
@@ -57,6 +60,16 @@ if ($db->isConnected()) {
         $c = $db->getClient(1);
         print "OBTENER UN USUARIO POR ID: <br><br>";
         var_dump($c);
+    } catch (ServiceException $ex) {
+        print $ex->getMessage();
+    }
+
+    print "<br><br>";
+    //maxUser
+    try {
+        $max = $db->maxClientid();
+        print "ID MÁXIMO DE CLIENTE: <br><br>";
+        var_dump($max);
     } catch (ServiceException $ex) {
         print $ex->getMessage();
     }

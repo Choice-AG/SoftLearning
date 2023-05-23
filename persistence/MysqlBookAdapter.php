@@ -45,7 +45,7 @@ class MysqlBookAdapter extends MysqlAdapter {
                         "price = '" . $book->getPrice() . "'," .
                         "author = '" . $book->getAuthor() . "'," .
                         "isbn = '" . $book->getIsbn() . "'," .
-                        "editorial '= " . $book->getEditorial() . "'," .
+                        "editorial = '" . $book->getEditorial() . "'," .
                         "pages = " . $book->getPages() . "," .
                         "language = '" . $book->getLanguage() . "'," .
                         "format = '" . $book->getFormat() . "'," .
@@ -53,7 +53,7 @@ class MysqlBookAdapter extends MysqlAdapter {
                         "dimensions = '" . $book->getDimensions() . "'," .
                         "publication_date = '" . $book->getPublicationDateMysql() . "'," .
                         "available_date = '" . $book->getAvailableDateMysql() . "'," .
-                        "genre = '" . $book->getGenre() . "'," .
+                        "genre = '" . $book->getGenre() . "'" .
                         "WHERE id = '" . $book->getId() . "';");
     } catch (mysqli_sql_exception $ex) {
         throw new ServiceException("Error al actualizar el libro -->" . $ex->getMessage());

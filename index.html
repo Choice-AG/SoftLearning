@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>    
+        <title> Aprenentatge per Projectes </title>
+        <meta charset="UTF-8">
+        <meta name="title" content="Portal del Modul 3">
+        <meta name="description" content="Proves d'aprenentatge">
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+	
+    <body>
+        <header  class="title">
+            <h2> PHP Aprendizaje por proyectos</h2>		
+        </header>
+
+        <aside id="leftside">
+            <div 
+                class="darkstyle">
+            </div>
+        </aside>
+
+        <aside id="rightside">
+            <div class="darkstyle">
+                <b>Aquest projecte no fa servir frameworks de frontend ni backend, ni inclou JavaScript/Ajax.<br>
+                L'objectiu es treballar els Fonaments de Programació prenent com a base el Llenguatge PHP.<br>
+                Trobareu decisions de Arquitectura molt millorables, es normal.<br>
+                Només es vol mostrar una introducció a les Classes, tractament de cockies, variables de sessió i una mínima entrada a arquitectura de software.</b>
+            </div>
+        </aside>
+
+        <section id="central">
+            <a name="principal"></a>
+            <h4> Per accedir al contingut has de estar autenticat </h4>
+            <article>        
+                <form action="controllers/AccessController.php" method="POST">
+                    Entra nom i contrassenya si ja ets usuari, o bé dona't d'alta al portal<br>
+                    <br><label>USER: </label><input type="text" name="user"/>
+                    <br><label>PASSWORD: </label><input type="text" name="passwd"/><br>
+                    <br><br><input type="submit" value="ACCEDIR" name="enviar" />
+                </form>             
+            </article>
+        </section>
+
+        <footer>
+            <div class="darkstyle">
+                <a><b> Autor: Goizane Olañeta</b> </a>  
+            </div>
+        </footer>
+    </body>
+</html>

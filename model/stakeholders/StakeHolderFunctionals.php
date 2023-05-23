@@ -25,6 +25,10 @@ $client = new Client("Cliente", "005", "87889789789", "mail@cliente.com", "Calle
 print "<br><br>Client<br>ID:" . $client->getClientId() . "<br>Nombre: " . $client->getName() . 
     "<br>Fecha de nacimiento: " . $client->getBirthday();
 
+    print "<br><br>";
+    $client->setName("aaaaaaa");
+    print $client->getName();
+
 //Company
 $company = new Company("Reg. mercantil", "SL", 100);
 print "<br><br>Company<br>Commercial Register: " . $company->getCommercialReg() . "<br>Type: " . 

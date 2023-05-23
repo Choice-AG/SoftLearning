@@ -24,25 +24,25 @@ if ($db->isConnected()) {
 
     try {
         if ($db->addBook($book)) {
-            print "LIBRO" . $book->getId() . " AÑADIDO<br><br>";
+            print "LIBRO" . $book->getId() . " AÑADIDO";
             $b = $db->getBook(1);
             var_dump($b);
         } else {
-            print "LIBRO " . $book->getId() ." NO AÑADIDO<br><br>";
+            print "LIBRO " . $book->getId() ." NO AÑADIDO";
         }
     } catch (ServiceException $ex) {
-        print "NO SE HA AÑADIDO EL LIBRO <br><br>";
+        print "NO SE HA AÑADIDO EL LIBRO";
         print $ex->getMessage();
     }
     
     try {
-        $book->setName("El cuento de Haku");
+        $book->setName("El viaje de chihiro");
         $db->updateBook($book);
-        print "LIBRO ACTUALIZADO<br><br>";
+        print "<br><br>LIBRO ACTUALIZADO<br><br>";
         $b = $db->getBook(1);
         var_dump($b);
     } catch (ServiceException $ex) {
-        print "NO HEMOS ACTUALIZADO AL CLIENTE<br><br>";
+        print "<br><br>NO HEMOS ACTUALIZADO AL CLIENTE<br><br>";
         print $ex->getMessage();
     }
     print "<br><br>";
