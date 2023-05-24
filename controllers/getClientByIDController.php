@@ -26,6 +26,7 @@ if ($id) {
             $message = "XML: ";
             $clientXmlSerializer = new XMLClientSerializer();
             $message .= $clientXmlSerializer->serialize($persistence->getClient($id));
+            //Para imprimir tal cual lo que recibe
             $message .= "<pre>" . htmlspecialchars($clientXmlSerializer->serialize($persistence->getClient($id))) . "</pre>";
         } else {
             $message .= "No data found";

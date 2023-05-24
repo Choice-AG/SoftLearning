@@ -26,6 +26,7 @@ if ($id) {
             $message = "XML: ";
             $bookXmlSerializer = new XMLBookSerializer();
             $message .= $bookXmlSerializer->serialize($persistence->getBook($id));
+            //Para imprimir tal cual lo que recibe
             $message .= "<pre>" . htmlspecialchars($bookXmlSerializer->serialize($persistence->getBook($id))) . "</pre>";
         } else {
             $book = $persistence->getBook($id);
