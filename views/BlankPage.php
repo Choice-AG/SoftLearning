@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>Aprenentatge per Projectes</title>
+        <title>Aprendizaje por proyectos</title>
         <meta charset="UTF-8">
         <meta name="title" content="Portal del Modul 3">
         <link href="../css/style.css" rel="stylesheet" type="text/css"/>

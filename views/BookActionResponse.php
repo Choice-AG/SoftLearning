@@ -14,7 +14,7 @@
         <section id="menu">
             <nav class="darkstyle">
                 <div>
-                    <a href="MainView.php" class="optmenu"> HOME</a>
+                    <a href="MainView.php" class="optmenu">HOME</a>
                 </div>
             </nav>
         </section>
@@ -38,7 +38,7 @@
         <article>
             <?php
             print filter_input(INPUT_COOKIE, 'response');
-            print "<p><a href='UserAccountView.php' class='optmenu'> TORNAR</a></p>\n";
+            print "<p><a href='BookAccountView.php' class='optmenu'> VOLVER</a></p>\n";
             ?>
         </article>
     </section>

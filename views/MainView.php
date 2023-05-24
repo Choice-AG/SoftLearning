@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>Aprenentatge per Projectes</title>
+        <title>Aprendizaje por proyectos</title>
         <meta charset="UTF-8">
         <meta name="title" content="Portal del Modul 3">
         <link href="../css/style.css" rel="stylesheet" type="text/css"/>
@@ -15,7 +15,7 @@
                     <div>
                         <a href="UserAccountView.php" class="optmenu">USUARIS</a>
                         <a href="ClientAccountView.php" class="optmenu">CLIENTS</a>
-                        <a href="BlankPage.php" class="optmenu">PRODUCTS</a>
+                        <a href="BookAccountView.php" class="optmenu">BOOKS</a>
                         <a href="BlankPage.php" class="optmenu">ORDERS</a>
                     </div>
                 </nav>
@@ -48,7 +48,7 @@
                 print "
                 <h4>Elige la clase que quieras editar:</h4>
                 <a href='ClientAccountView.php' class='optmenu'>CLIENTS</a>
-                <a href='BlankPage.php' class='optmenu'>PRODUCTS</a>
+                <a href='BookAccountView.php' class='optmenu'>BOOKS</a>
                 <a href='BlankPage.php' class='optmenu'>ORDERS</a>
                 ";
                 ?> 

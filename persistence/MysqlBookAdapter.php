@@ -29,7 +29,7 @@ class MysqlBookAdapter extends MysqlAdapter {
         return $this->writeQuery("INSERT INTO books (id,name,description,price,author,isbn,editorial,pages,language,
         format,weight,dimensions,publication_date,available_date,genre)" .
                         " VALUES ('" . $book->getId() . "','" . $book->getName() . "','" .
-                        $book->getDescription() . "','" . $book->getPrice() . "','" . $book->getAuthor() 
+                        $book->getDescription() . "'," . $book->getPrice() . ",'" . $book->getAuthor() 
                         . "','" . $book->getIsbn() . "','" . $book->getEditorial() . "'," . $book->getPages() . ",'" . 
                         $book->getLanguage() . "','" . $book->getFormat() . "'," . $book->getWeight() . ",'" . $book->getDescription() . "','" . 
                         $book->getPublicationDateMysql() . "','" . $book->getAvailableDateMysql() . "','" . $book->getGenre() . "');");
@@ -58,5 +58,18 @@ class MysqlBookAdapter extends MysqlAdapter {
     } catch (mysqli_sql_exception $ex) {
         throw new ServiceException("Error al actualizar el libro -->" . $ex->getMessage());
     }
+  }
+  public function maxBookId(): int
+  {
+    try {
+      $id = $this->readQuery("SELECT max(id) as last FROM books;");
+      return (int)$id[0]["last"];
+    } catch (mysqli_sql_exception $ex) {
+      throw new ServiceException("Error al leer books -->" . $ex->getMessage());
+    }
+  }
+  public function exists(string $isbn): bool {
+    $data = $this->readQuery("SELECT id FROM books WHERE isbn = '" . $isbn . "';");
+    return count($data) > 0;
   }
 }

@@ -6,8 +6,41 @@ include '../../model/products/Libro.php';
 include '../../persistence/MysqlAdapter.php';
 include '../../persistence/MysqlBookAdapter.php';
 
-$book = new Libro("1", "El cuento de peter pan", "Peter pan va sobre un niño que nunca crecia y luego le pasan cosas.", 
-"15.2", "Joaquin Pereira", "978-84-376-0494-7", "Anaya", 200, "Español", "Tapa dura", 500, "20x15x2", "29-12-2022" , "17-01-2023", "Fantasia");
+$book = new Libro(
+    "1",
+    "El cuento de peter pan",
+    "Peter pan va sobre un niño que nunca crecia y luego le pasan cosas.",
+    "15.2",
+    "Joaquin Pereira",
+    "978-84-376-0494-7",
+    "Anaya",
+    200,
+    "Español",
+    "Tapa dura",
+    500,
+    "20x15x2",
+    "29-12-2022",
+    "17-01-2023",
+    "Fantasia"
+);
+//book2 - el imperio final
+$book2 = new Libro(
+    "2",
+    "El imperio final",
+    "El imperio final va sobre un niño que nunca crecia y luego le pasan cosas.",
+    "15.2",
+    "Joaquin Pereira",
+    "978-84-376-0494-7",
+    "Anaya",
+    200,
+    "Español",
+    "Tapa dura",
+    500,
+    "20x15x2",
+    "29-12-2022",
+    "17-01-2023",
+    "Fantasia"
+);
 $db = new MysqlBookAdapter();
 
 if ($db->isConnected()) {
@@ -28,13 +61,13 @@ if ($db->isConnected()) {
             $b = $db->getBook(1);
             var_dump($b);
         } else {
-            print "LIBRO " . $book->getId() ." NO AÑADIDO";
+            print "LIBRO " . $book->getId() . " NO AÑADIDO";
         }
     } catch (ServiceException $ex) {
         print "NO SE HA AÑADIDO EL LIBRO";
         print $ex->getMessage();
     }
-    
+
     try {
         $book->setName("El viaje de chihiro");
         $db->updateBook($book);
@@ -53,7 +86,7 @@ if ($db->isConnected()) {
         print "NO SE HA ELIMINADO EL LIBRO<br><br>";
         print $ex->getMessage();
     }
-    
+
     try {
         $b = $db->getBook(1);
         print "OBTENER UN LIBRO POR ID: <br><br>";
@@ -61,8 +94,25 @@ if ($db->isConnected()) {
     } catch (ServiceException $ex) {
         print $ex->getMessage();
     }
-    
+    print "<br><br>";
+    //maxBook
+    try {
+        $max = strval($db->maxBookid() + 1);
+        print "ID MÁXIMO DE LIBRO: <br><br>";
+        var_dump($max);
+    } catch (ServiceException $ex) {
+        print $ex->getMessage();
+    }
+    print "<br><br>";
+    //bookExists
+    try {
+        $exists = $db->exists(1);
+        print "EL LIBRO EXISTE id:" . $b->getId() . "<br><br>";
+        var_dump($exists);
+    } catch (ServiceException $ex) {
+        print $ex->getMessage();
+    }
+
 } else {
     print "CONEXIÓN NO ESTABLECIDA<br><br>";
 }
-
