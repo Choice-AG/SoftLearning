@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-05-2023 a las 10:48:08
+-- Tiempo de generación: 24-05-2023 a las 23:40:11
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.12
 
@@ -31,7 +31,7 @@ CREATE TABLE `books` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(50) NOT NULL,
   `description` varchar(100) NOT NULL,
-  `price` float NOT NULL,
+  `price` varchar(10) NOT NULL,
   `author` varchar(50) NOT NULL,
   `isbn` varchar(50) NOT NULL,
   `editorial` varchar(20) NOT NULL,
@@ -50,9 +50,10 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `name`, `description`, `price`, `author`, `isbn`, `editorial`, `pages`, `language`, `format`, `weight`, `dimensions`, `publication_date`, `available_date`, `genre`) VALUES
-(1, 'El viaje de chihiro', 'Peter pan va sobre un niño que nunca crecia y luego le pasan cosas.', 20, 'Joaquin Pereira', '978-84-376-0494-7', 'Anaya', 200, 'Español', 'Tapa dura', 500, '20x15x2', '2022-12-29', '0000-00-00', 'Fantasia'),
-(2, 'asdasa', 'Algo de algo de algo de algo de algo de algo', 10, 'La oreja de van gogh', '978-84-376-0494-8', 'Anaya', 123, 'Castellano', 'Fisico', 2, 'Algo de algo de algo', '2000-06-02', '2023-07-02', 'Fantasía'),
-(3, 'El libro del programador', 'Algo de algo de algo de algo de algo de algo', 14, 'Aitor Menta', '978-84-376-0494-9', 'Anaya', 1234, 'Castellano', 'Fisico', 20, 'Algo de algo de algo', '2000-06-02', '0000-00-00', 'Fantasía');
+(1, 'asdasa', 'Algo de algo de algo de algo de algo de algo', '10', 'La oreja de van gogh', '978-84-376-0494-7', 'Anaya', 123, 'Castellano', 'Fisico', 2, '20x15x2', '2023-05-06', '0000-00-00', 'Fantasia'),
+(2, 'asdasa', 'Algo de algo de algo de algo de algo de algo', '10', 'La oreja de van gogh', '978-84-376-0494-8', 'Anaya', 123, 'Castellano', 'Fisico', 2, 'Algo de algo de algo', '2000-06-02', '2023-07-02', 'Fantasía'),
+(3, 'El libro del programador', 'Algo de algo de algo de algo de algo de algo', '14', 'Aitor Menta', '978-84-376-0494-9', 'Anaya', 1234, 'Castellano', 'Fisico', 20, 'Algo de algo de algo', '2000-06-02', '0000-00-00', 'Fantasía'),
+(4, 'Alejandro', 'Algo de algo de algo de algo de algo de algo', '10', 'La oreja de van gogh', '978-84-376-0494-2', 'Anaya', 123, 'Castellano', 'Fisico', 200, 'Algo de algo de algo', '2023-05-04', '2023-09-06', 'Fantasía');
 
 -- --------------------------------------------------------
 
@@ -75,9 +76,11 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`client_id`, `name`, `ident`, `phone`, `email`, `address`, `birthday`) VALUES
-(1, 'Alvaro', '12345678A', '444777444', 'a.salas@gmail.com', 'La calle de al lado n5', '1998-07-17'),
+(1, 'asdwqqweq', '12345678A', '666666666', 'a.salas@gmail.com', 'Alguna calle de por ahi 5', '1998-07-17'),
 (2, 'aaa', '33333333A', '888888888', 'a.lejandro2@gmail.com', 'Alguna calle de por ahi', '2000-07-07'),
-(3, 'Ethan', '22222222A', '343344343', 'et.han@gmail.com', 'Alguna calle de por ahi 2', '1996-07-07');
+(3, 'Ethan', '22222222A', '343344343', 'et.han@gmail.com', 'Alguna calle de por ahi 2', '1996-07-07'),
+(4, 'jose', '33333333S', '333333333', 'jose@gmail.com', 'Alguna calle de por ahi 7', '1996-03-01'),
+(5, 'Alejandro', '33333333C', '666666666', 'jose@gmail.com', 'Alguna calle de por ahi 2', '2023-05-11');
 
 -- --------------------------------------------------------
 
@@ -141,13 +144,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `client_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `client_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

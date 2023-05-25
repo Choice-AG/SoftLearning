@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+include_once '../exceptions/BuildException.php';
+include_once '../exceptions/ServiceException.php';
 include_once '../model/checks/Checker.php';
 include_once '../model//products/Libro.php';
 include_once '../persistence/MysqlAdapter.php';
@@ -18,7 +20,9 @@ $xml = filter_input(INPUT_POST, 'xml');
 
 if ($id) {
     try {
-        if (filter_input(INPUT_POST, 'json') == true) {
+        if (filter_input(INPUT_POST, 'json') == true and filter_input(INPUT_POST, 'xml') == true) {
+            $message = "You can't select JSON and XML at the same time";
+        } else if (filter_input(INPUT_POST, 'json') == true) {
             $message = "JSON: ";
             $bookJsonSerializer = new JsonBookSerializer();
             $message .= $bookJsonSerializer->serialize($persistence->getBook($id));
@@ -29,12 +33,7 @@ if ($id) {
             //Para imprimir tal cual lo que recibe
             $message .= "<pre>" . htmlspecialchars($bookXmlSerializer->serialize($persistence->getBook($id))) . "</pre>";
         } else {
-            $book = $persistence->getBook($id);
-            $message = "Book: " . $book->getId() . ";" . $book->getName() . ";" . $book->getDescription() . ";" . 
-                        $book->getPrice() . ";" . $book->getAuthor() . ";" . $book->getIsbn() . ";" . 
-                        $book->getEditorial() . ";" . $book->getPages() . ";" . $book->getLanguage() . ";" . $book->getFormat() . " " . 
-                        $book->getWeight() . ";" . $book->getDimensions() . ";" . $book->getPublicationDateMysql() . ";" . 
-                        $book->getAvailableDateMysql() . ";" . $book->getGenre();
+            $message = "You have to select at least one (JSON or XML)";
         }
     } catch (ServiceException $ex) {
         $message .= $ex->getMessage();

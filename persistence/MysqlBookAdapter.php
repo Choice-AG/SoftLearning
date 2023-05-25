@@ -72,4 +72,13 @@ class MysqlBookAdapter extends MysqlAdapter {
     $data = $this->readQuery("SELECT id FROM books WHERE isbn = '" . $isbn . "';");
     return count($data) > 0;
   }
+  public function idExists(int $id): bool {
+    $data = $this->readQuery("SELECT id FROM books WHERE id = '" . $id . "';");
+    return count($data) > 0;
+  }
+
+  public function isbnExists(string $isbn): bool {
+    $data = $this->readQuery("SELECT isbn FROM books WHERE isbn = '" . $isbn . "';");
+    return count($data) > 0;
+  }
 }

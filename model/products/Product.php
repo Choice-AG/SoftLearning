@@ -1,13 +1,12 @@
 <?php
 
 include_once 'interface/Marketable.php';
-include '../../exceptions/BuildException.php';
 
 abstract class Product implements Marketable {
     protected string $id;
     protected string $name;
     protected string $description;
-    protected float $price;
+    protected int $price;
     protected string $author;
     
     //Construtor (Protegido) -> id, name, description, price, author
@@ -84,7 +83,7 @@ abstract class Product implements Marketable {
         return $error;
     }
 
-    public function setPrice(float $price): int {
+    public function setPrice($price): int {
         $error = Checker::NumberValidator($price);
         if ($error == 0) {
             $this->price = $price;

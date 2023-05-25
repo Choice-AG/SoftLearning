@@ -38,7 +38,8 @@
                 <div id="formulario">  
                     <label><b>Find Book</b> </label>
                     <form action="../controllers/getBookByIDController.php" method="POST">
-                        <input name="id" placeholder="Introduce el ID del libro a buscar"/><br><br>
+                        <input name="id" placeholder="Introduce el ID del libro a buscar"/><br>
+                        <p><b>Format</b></p>
                         JSON<input type="checkbox" name="json" /><br>
                         XML<input type="checkbox" name="xml" />
                         <input type="submit" value="GET" id="enviar" /><br><br> 
@@ -58,25 +59,25 @@
                         <label for="">Descripción</label>
                         <input name="description" placeholder="Descripción"/><br>
                         <label for="">Precio</label>
-                        <input name="price" placeholder="Precio"/><br>
+                        <input type="number" min="1" name="price" placeholder="Precio"/><br>
                         <label for="">Autor</label>
                         <input name="author" placeholder="Autor"/><br>
                         <label for="">Editorial</label>
                         <input name="editorial" placeholder="Editorial"/><br>
                         <label for="">Núm.páginas</label>
-                        <input name="pages" placeholder="Núm. páginas"/><br>
+                        <input type="number" min="1" name="pages" placeholder="Núm. páginas"/><br>
                         <label for="">Idioma</label>
                         <input name="language" placeholder="Idioma"/><br>
                         <label for="">Formato</label>
                         <input name="format" placeholder="Formato -> Físico, digital..."/><br>
                         <label for="">Peso</label>
-                        <input name="weight" placeholder="Peso"/><br>
+                        <input type="number" min="1" name="weight" placeholder="Peso"/><br>
                         <label for="">Dimensiones</label>
                         <input name="dimensions" placeholder="Ej: 200mmx100mm"/><br>
                         <label for="">Fecha publicación</label>
-                        <input name="publication_date" placeholder="Ej: 2022-12-29"/><br>
+                        <input type="date" name="publication_date"/><br>
                         <label for="">Fecha disponible</label>
-                        <input name="available_date" placeholder="Ej: 2023-01-20"/><br>
+                        <input type="date" name="available_date"/><br>
                         <label for="">Género</label>
                         <input name="genre" placeholder="Género"/><br>
                         <input type="submit" value="CHANGE" id="enviar" /><br><br>
@@ -93,7 +94,7 @@
                         <label for="">Descripción</label>
                         <input name="description" placeholder="Descripción"/><br>
                         <label for="">Precio</label>
-                        <input name="price" placeholder="Precio"/><br>
+                        <input type="number" min="1" name="price" placeholder="Precio"/><br>
                         <label for="">Autor</label>
                         <input name="author" placeholder="Autor"/><br>
                         <label for="">Isbn</label>
@@ -101,19 +102,19 @@
                         <label for="">Editorial</label>
                         <input name="editorial" placeholder="Editorial"/><br>
                         <label for="">Núm.páginas</label>
-                        <input name="pages" placeholder="Núm. páginas"/><br>
+                        <input type="number" min="1" name="pages" placeholder="Núm. páginas"/><br>
                         <label for="">Idioma</label>
                         <input name="language" placeholder="Idioma"/><br>
                         <label for="">Formato</label>
                         <input name="format" placeholder="Formato -> Físico, digital..."/><br>
                         <label for="">Peso</label>
-                        <input name="weight" placeholder="Peso"/><br>
+                        <input type="number" min="1" name="weight" placeholder="Peso"/><br>
                         <label for="">Dimensiones</label>
                         <input name="dimensions" placeholder="Ej: 200mmx100mm"/><br>
                         <label for="">Fecha publicación</label>
-                        <input name="publication_date" placeholder="Ej: 2022-12-29"/><br>
+                        <input type="date" name="publication_date"/><br>
                         <label for="">Fecha disponible</label>
-                        <input name="available_date" placeholder="Ej: 2023-01-20"/><br>
+                        <input type="date" name="available_date"/><br>
                         <label for="">Género</label>
                         <input name="genre" placeholder="Género"/><br>
                         <input type="submit" value="ADD" id="enviar" /><br><br>

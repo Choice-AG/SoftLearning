@@ -80,7 +80,7 @@ abstract class Person {
     }
 
     public function setIdent(string $ident): int {
-        $error = Checker::StringValidator($ident, 2);
+        $error = Checker::StringValidator($ident, 9);
         if ($error == 0) {
             $this->ident = $ident;
         }
@@ -96,7 +96,7 @@ abstract class Person {
     }
 
     public function setEmail(string $email): int {
-        $error = Checker::StringValidator($email, 5);
+        $error = Checker::StringValidator($email, 12);
         if ($error == 0) {
             $this->email = $email;
         }

@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+include_once '../exceptions/BuildException.php';
 include_once '../model/checks/Checker.php';
 include_once '../model/products/Libro.php';
 include_once '../persistence/MysqlAdapter.php';
@@ -11,7 +12,7 @@ $message = "Unsucessfully Request: ";
 
 $name = filter_input(INPUT_POST, 'name');
 $description = filter_input(INPUT_POST, 'description');
-$price = filter_input(INPUT_POST, 'price');
+$price = (int)filter_input(INPUT_POST, 'price');
 $author = filter_input(INPUT_POST, 'author');
 $isbn = filter_input(INPUT_POST, 'isbn');
 $editorial = filter_input(INPUT_POST, 'editorial');
@@ -27,7 +28,7 @@ $genre = filter_input(INPUT_POST, 'genre');
 if ($name and $description and $price and $author and $isbn and $editorial and $pages and $language
     and $format and $weight and $dimensions and $publication_date and $available_date and $genre) {
   try {
-    if ($persistence->exists($isbn) === false) {
+    if ($persistence->isbnExists($isbn) === false) {
       $book_id = strval($persistence->maxBookId() + 1);
       $book = new Libro($book_id, $name, $description, $price, $author, $isbn, $editorial, $pages, $language, $format, $weight, $dimensions, $publication_date, $available_date, $genre);
       $persistence->addBook($book);
@@ -37,7 +38,7 @@ if ($name and $description and $price and $author and $isbn and $editorial and $
         $book->getWeight() . ";" . $book->getDimensions() . ";" . $book->getAvailableDateMysql() . ";" .
         $book->getAvailableDateMysql() . ";" . $book->getGenre() . ";" . " -> New book added";
     } else {
-      $message .= "Book Exists";
+      $message .= "Book with that ISBN already exists";
     }
   } catch (ServiceException $ex) {
     $message .= $ex->getMessage();

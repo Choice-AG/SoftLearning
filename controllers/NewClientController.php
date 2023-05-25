@@ -27,7 +27,7 @@ if ($name and $ident and $phone and $email and $address and $birthday) {
                 $client->getEmail() . ";" . $client->getAddress() . ";" . $client->getBirthdayMysql() . ";" . 
                 " -> New client added";
     } else {
-      $message .= "Client Exists";
+      $message .= "Client with that DNI Exists";
     }
   } catch (ServiceException $ex) {
     $message .= $ex->getMessage();
@@ -37,6 +37,7 @@ if ($name and $ident and $phone and $email and $address and $birthday) {
 } else {
   $message .= "Few fields data found";
 }
+
 
 setcookie('response', $message, 0, '/', 'localhost');
 header('location: ../views/ClientActionResponse.php');

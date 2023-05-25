@@ -38,7 +38,8 @@
                 <div id="formulario">  
                     <label><b>Find Client</b> </label>
                     <form action="../controllers/getClientByIDController.php" method="POST">
-                        <input name="id" placeholder="Introduce el ID del cliente a buscar"/><br><br>
+                        <input name="id" placeholder="Introduce el ID del cliente a buscar"/><br>
+                        <p><b>Format</b></p>
                         JSON<input type="checkbox" name="json" /><br>
                         XML<input type="checkbox" name="xml" />
                         <input type="submit" value="GET" id="enviar" /><br><br> 
@@ -81,7 +82,7 @@
                         <label for="">Dirección</label>
                         <input name="address" placeholder="Dirección"/><br>
                         <label for="">Fecha nacimiento</label>
-                        <input name="birthday" placeholder="Ej: 1996-12-29"/><br>
+                        <input type="date" name="birthday" id="birthday">
                         <input type="submit" value="ADD" id="enviar" /><br><br>
                     </form>
                 </div>

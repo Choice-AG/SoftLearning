@@ -25,71 +25,134 @@ $publication_date = filter_input(INPUT_POST, 'publication_date');
 $available_date = filter_input(INPUT_POST, 'available_date');
 $genre = filter_input(INPUT_POST, 'genre');
 
-
 if ($id) {
-  $message = "";
-  try {
-    $b = $persistence->getBook($id);
-    if ($name) {
-      $b->setName($name);
-      $message .= "Name changed;";
+  if ($persistence->idExists($id)) {
+    $c = $persistence->getBook($id);
+    $message = "";
+    try {
+      if ($name) {
+        if ($c->setName($name) == 0) {
+          $c->setName($name);
+          $message .= "Name changed;";
+        } else {
+          $message .= "Bad Name;";
+        }
+      }
+      if ($description) {
+        if ($c->setDescription($description) == 0) {
+          $c->setDescription($description);
+          $message .= "Description changed;";
+        } else {
+          $message .= "Bad Description;";
+        }
+      }
+      if ($price) {
+        if ($c->setPrice($price) == 0) {
+          $c->setPrice($price);
+          $message .= "Price changed;";
+        } else {
+          $message .= "Bad Price;";
+        }
+      }
+      if ($author) {
+        if ($c->setAuthor($author) == 0) {
+          $c->setAuthor($author);
+          $message .= "Author changed;";
+        } else {
+          $message .= "Bad Author;";
+        }
+      }
+      if ($editorial) {
+        if ($c->setEditorial($editorial) == 0) {
+          $c->setEditorial($editorial);
+          $message .= "Editorial changed;";
+        } else {
+          $message .= "Bad Editorial;";
+        }
+      }
+      if ($pages) {
+        if ($c->setPages($pages) == 0) {
+          $c->setPages($pages);
+          $message .= "Pages changed;";
+        } else {
+          $message .= "Bad Pages;";
+        }
+      }
+      if ($language) {
+        if ($c->setLanguage($language) == 0) {
+          $c->setLanguage($language);
+          $message .= "Language changed;";
+        } else {
+          $message .= "Bad Language;";
+        }
+      }
+      if ($format) {
+        if ($c->setFormat($format) == 0) {
+          $c->setFormat($format);
+          $message .= "Format changed;";
+        } else {
+          $message .= "Bad Format;";
+        }
+      }
+      if ($weight) {
+        if ($c->setWeight($weight) == 0) {
+          $c->setWeight($weight);
+
+          $message .= "Weight changed;";
+        } else {
+          $message .= "Bad Weight;";
+        }
+
+      }
+      if ($dimensions) {
+        if ($c->setDimensions($dimensions) == 0) {
+          $c->setDimensions($dimensions);
+          $message .= "Dimensions changed;";
+        } else {
+          $message .= "Bad Dimensions;";
+        }
+      }
+      if ($publication_date) {
+        if ($c->setPublicationDate($publication_date) == 0) {
+          $c->setPublicationDate($publication_date);
+          $message .= "Publication Date changed;";
+        } else {
+          $message .= "Bad Publication Date;";
+        }
+      }
+      if ($available_date) {
+        if ($c->setAvailableDate($available_date) == 0) {
+          $c->setAvailableDate($available_date);
+          $message .= "Available Date changed;";
+        } else {
+          $message .= "Bad Available Date;";
+        }
+      }
+      if ($genre) {
+        if ($c->setGenre($genre) == 0) {
+          $c->setGenre($genre);
+          $message .= "Genre changed;";
+        } else {
+          $message .= "Bad Genre;";
+        }
+      }
+      if (!$name and !$description and !$price and !$author and !$editorial and !$pages and !$language and !$format and !$weight and !$dimensions and !$publication_date and !$available_date and !$genre) {
+        $message .= "No data added to change";
+      } else {
+        $persistence->updateBook($c);
+        $message .= " -> Book " . $c->getId() . " updated";
+      }
+    } catch (ServiceException $ex) {
+      $message .= $ex->getMessage();
     }
-    if ($description) {
-      $b->setDescription($description);
-      $message .= "Description changed;";
-    }
-    if ($price) {
-      $b->setPrice($price);
-      $message .= "Price changed;";
-    }
-    if ($author) {
-      $b->setAuthor($author);
-      $message .= "Author changed;";
-    }
-    if ($editorial) {
-      $b->setEditorial($editorial);
-      $message .= "Editorial changed;";
-    }
-    if ($pages) {
-      $b->setPages($pages);
-      $message .= "Pages changed;";
-    }
-    if ($language) {
-      $b->setLanguage($language);
-      $message .= "Language changed;";
-    }
-    if ($format) {
-      $b->setFormat($format);
-      $message .= "Format changed;";
-    }
-    if ($weight) {
-      $b->setWeight($weight);
-      $message .= "Weight changed;";
-    }
-    if ($dimensions) {
-      $b->setDimensions($dimensions);
-      $message .= "Dimensions changed;";
-    }
-    if ($publication_date) {
-      $b->setPublicationDate($publication_date);
-      $message .= "Publication date changed;";
-    }
-    if ($available_date) {
-      $b->setAvailableDate($available_date);
-      $message .= "Available date changed;";
-    }
-    if ($genre) {
-      $b->setGenre($genre);
-      $message .= "Genre changed;";
-    }
-    $persistence->updateBook($b);
-    $message .= " -> Book " . $b->getId() . " updated";
-  } catch (ServiceException $ex) {
-    $message .= $ex->getMessage();
+  } else {
+    $message .= "Book with id: " . $id . " does not exist";
   }
 } else {
-  $message .= "No data found";
+  $message .= "Filling the ID is mandatory";
 }
+
+
 
 setcookie('response', $message, 0, '/', 'localhost');
 header('location: ../views/BookActionResponse.php');

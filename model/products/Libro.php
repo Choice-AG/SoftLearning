@@ -16,7 +16,7 @@ class Libro extends Product implements Storable, JsonSerializable{
   protected string $genre;
 
   //Constructor
-  public function __construct(string $id, string $name, string $description, string $price, string $author, string $isbn, string $editorial, 
+  public function __construct(string $id, string $name, string $description, int $price, string $author, string $isbn, string $editorial, 
     int $pages, string $language, string $format, int $weight, string $dimension, string $publicationDate, string $availableDate, string $genre) {
     parent::__construct($id, $name, $description, $price, $author);
 

@@ -69,7 +69,17 @@ class MysqlClientAdapter extends MysqlAdapter
   public function exists(string $ident): bool
   {
     try {
-      $data = $this->readQuery("SELECT client_id FROM clients WHERE ident = " . $ident . ";");
+      $data = $this->readQuery("SELECT ident FROM clients WHERE ident = '" . $ident . "';");
+      return count($data) > 0;
+    } catch (mysqli_sql_exception $ex) {
+      throw new ServiceException("Error al leer clients -->" . $ex->getMessage());
+    }
+  }
+
+  public function idExists(int $id): bool
+  {
+    try {
+      $data = $this->readQuery("SELECT client_id FROM clients WHERE client_id = " . $id . ";");
       return count($data) > 0;
     } catch (mysqli_sql_exception $ex) {
       throw new ServiceException("Error al leer clients -->" . $ex->getMessage());
