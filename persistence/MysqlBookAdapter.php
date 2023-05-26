@@ -7,7 +7,7 @@ class MysqlBookAdapter extends MysqlAdapter {
     $data = $this->readQuery("SELECT id,name,description,price,author,isbn,editorial,pages,language,
     format,weight,dimensions,publication_date,available_date,genre FROM books WHERE id = " . $id . ";");
     if (count($data) > 0){
-        return new Libro($data[0]["id"], $data[0]["name"], $data[0]["description"], $data[0]["price"],
+        return new Libro($data[0]["id"], $data[0]["name"], $data[0]["description"], (int)$data[0]["price"],
         $data[0]["author"], $data[0]["isbn"], $data[0]["editorial"], (int)$data[0]["pages"], $data[0]["language"], 
         $data[0]["format"], (int)$data[0]["weight"], $data[0]["dimensions"], $data[0]["publication_date"], 
         $data[0]["available_date"], $data[0]["genre"]);
@@ -39,7 +39,7 @@ class MysqlBookAdapter extends MysqlAdapter {
   }
   
   public function updateBook(Libro $book): bool {
-    try { 
+    try {
         return $this->writeQuery("UPDATE books SET name = '" . $book->getName() . "'," .
                         "description = '" . $book->getDescription() . "'," .
                         "price = '" . $book->getPrice() . "'," .
